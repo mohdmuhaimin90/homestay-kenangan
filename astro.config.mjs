@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://your-homestay.vercel.app',
+  site: 'https://homestay-kenangan.vercel.app',
   integrations: [
     tailwind(),
     sitemap(),
