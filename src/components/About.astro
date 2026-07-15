@@ -1,0 +1,85 @@
+---
+const highlights = [
+  'Spacious Rooms',
+  'Clean Environment',
+  'Family Friendly',
+  'Affordable Price',
+  'Strategic Location',
+  'Self Check-in',
+  'Free Parking',
+];
+
+const homestays = [
+  {
+    name: 'Homestay Kenangan Kemaman',
+    description: 'A cozy homestay located in the heart of Kemaman, Terengganu. Features 2 bedrooms, 1 bathroom, and 1 toilet. Perfect for small families.',
+    image: '/images/kemaman/Living Hall.jpg',
+    mapUrl: 'https://maps.app.goo.gl/KyBmg1iwgqLiSsha9',
+  },
+  {
+    name: 'Homestay Kenangan Kuala Terengganu',
+    description: 'A spacious homestay in Kuala Terengganu with 4 bedrooms and 4 bathrooms. Close to local attractions, restaurants, and beaches. Ideal for large families and groups.',
+    image: '/images/kuala-terengganu/living room 1.jpg',
+    mapUrl: 'https://maps.app.goo.gl/SCBDByiRjyYQefny6',
+  },
+];
+---
+
+<section id="about" class="section-padding bg-white dark:bg-gray-900" aria-label="About us">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="text-primary font-semibold text-sm tracking-wider uppercase">About Us</span>
+      <h2 class="section-title">Why Choose Homestay Kenangan</h2>
+      <p class="section-subtitle">
+        We provide comfortable and memorable stays for families and travelers at two convenient locations in Terengganu.
+      </p>
+    </div>
+
+    <!-- Two Homestays -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      {homestays.map((hs) => (
+        <div class="card group hover:-translate-y-1 overflow-hidden p-0">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img
+              src={hs.image}
+              alt={hs.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{hs.name}</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{hs.description}</p>
+            <a
+              href={hs.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-primary hover:text-primary-600 text-sm font-medium transition-colors"
+              aria-label={`View ${hs.name} on Google Maps`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              View Location
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Highlights -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {highlights.map((item) => (
+        <div class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors group">
+          <div class="w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{item}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

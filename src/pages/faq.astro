@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+const faqs = [
+  {
+    question: 'What is the check-in and check-out time?',
+    answer: 'Check-in time is from 2:00 PM and check-out time is at 12:00 PM. Early check-in and late check-out are subject to availability. Please contact us in advance to make arrangements.',
+  },
+  {
+    question: 'Is there free WiFi available?',
+    answer: 'WiFi is available at our Kuala Terengganu location. Please note that our Kemaman location does not have WiFi.',
+  },
+  {
+    question: 'Do you provide parking?',
+    answer: 'Yes, we offer free parking. Our Kemaman location can accommodate 2-3 cars, while our Kuala Terengganu location has parking for up to 10 cars.',
+  },
+  {
+    question: 'Is the homestay suitable for families with children?',
+    answer: 'Absolutely! Our homestay is family-friendly and equipped with amenities suitable for guests of all ages. We provide baby-friendly facilities such as a baby cot and high chair upon request.',
+  },
+  {
+    question: 'Can I cook in the homestay?',
+    answer: 'Yes, our homestay comes with a fully equipped kitchen including a stove, refrigerator, rice cooker, microwave, and all necessary cookware and utensils. Basic cooking ingredients like oil, salt, and spices are also provided.',
+  },
+  {
+    question: 'Is there a BBQ area?',
+    answer: 'Yes, we have an outdoor BBQ area with a built-in grill pit and seating for up to 8 people. BBQ equipment and charcoal can be provided upon prior arrangement at a nominal fee.',
+  },
+  {
+    question: 'How do I make a booking?',
+    answer: 'You can book directly through WhatsApp by clicking the "Book Now" button on our website. Send us your preferred dates, number of guests, and any special requests. We will confirm your booking within minutes.',
+  },
+  {
+    question: 'What is the cancellation policy?',
+    answer: 'Free cancellation is available up to 1 day before check-in. Please contact us for any changes to your booking.',
+  },
+  {
+    question: 'Are pets allowed?',
+    answer: 'We currently do not allow pets in the homestay to maintain cleanliness and comfort for all guests. Service animals may be permitted with prior notification.',
+  },
+  {
+    question: 'Is the homestay Muslim-friendly?',
+    answer: 'Yes, we provide prayer mats, telekung, and Al-Quran for Muslim guests. The kitchen is equipped for halal food preparation. Qibla direction is clearly marked in each room.',
+  },
+  {
+    question: 'How many guests can the homestay accommodate?',
+    answer: 'Our homestay can comfortably accommodate up to 8 guests across 3 bedrooms. Extra mattresses can be provided for additional guests upon request.',
+  },
+  {
+    question: 'Is there public transportation nearby?',
+    answer: 'Yes, the homestay is located within walking distance of bus stops and taxi stands. Ride-hailing services like Grab are also readily available in the area.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about Homestay Kenangan. Find answers about check-in, facilities, booking, cancellation policy, and more."
+  canonical="https://your-homestay.vercel.app/faq"
+  ogType="article"
+>
+  <Header />
+  <main>
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container-custom text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">
+          Frequently Asked Questions
+        </h1>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          Everything you need to know about staying at Homestay Kenangan.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Frequently asked questions">
+      <div class="container-custom">
+        <div class="max-w-3xl mx-auto">
+          <!-- Schema.org FAQ Structured Data -->
+          <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+          <div class="space-y-3" itemscope itemtype="https://schema.org/FAQPage">
+            {faqs.map((faq) => (
+              <details
+                class="group card p-0 overflow-hidden"
+                itemscope
+                itemprop="mainEntity"
+                itemtype="https://schema.org/Question"
+              >
+                <summary
+                  class="flex items-center justify-between p-5 cursor-pointer list-none text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                  aria-label={faq.question}
+                >
+                  <span class="pr-4" itemprop="name">{faq.question}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <div class="px-5 pb-5" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" itemprop="text">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding bg-gradient-to-br from-primary to-primary-700">
+      <div class="container-custom text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Still Have Questions?
+        </h2>
+        <p class="text-lg text-white/80 max-w-xl mx-auto mb-8">
+          Contact us directly on WhatsApp and we will be happy to help.
+        </p>
+        <a
+          href="https://wa.me/60199144505?text=Hi%20I'm%20interested%20in%20booking%20your%20homestay."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all"
+          aria-label="Contact us on WhatsApp"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Ask Us on WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

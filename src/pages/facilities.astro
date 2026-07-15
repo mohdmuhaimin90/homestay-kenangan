@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Facility {
+  title: string;
+  description: string;
+  details: string;
+}
+
+const facilities: Facility[] = [
+  {
+    title: 'High-Speed WiFi',
+    description: 'Stay connected with our fiber optic internet.',
+    details: 'Unlimited high-speed WiFi available throughout the homestay. Perfect for streaming, video calls, and remote work.',
+  },
+  {
+    title: 'Air Conditioning',
+    description: 'Stay cool and comfortable.',
+    details: 'Split unit air conditioners in every bedroom and living room. Remote-controlled for your convenience.',
+  },
+  {
+    title: 'Smart TV',
+    description: 'Entertainment at your fingertips.',
+    details: '45-inch Smart TV with Netflix, YouTube, and local channels. Enjoy your favorite shows and movies.',
+  },
+  {
+    title: 'Full Kitchen',
+    description: 'Cook your own meals.',
+    details: 'Fully equipped kitchen with stove, oven, cookware, utensils, and dining set for 8 people.',
+  },
+  {
+    title: 'Refrigerator',
+    description: 'Keep your food fresh.',
+    details: 'Large capacity refrigerator with separate freezer compartment, ice maker, and water dispenser.',
+  },
+  {
+    title: 'Rice Cooker',
+    description: 'Perfect rice every time.',
+    details: 'Automatic rice cooker with multiple cooking modes for rice, porridge, and steaming.',
+  },
+  {
+    title: 'Microwave',
+    description: 'Quick and convenient.',
+    details: 'Digital microwave oven with grill function, auto-cook menus, and defrost setting.',
+  },
+  {
+    title: 'Washing Machine',
+    description: 'Laundry made easy.',
+    details: 'Automatic front-loading washing machine with multiple wash programs.',
+  },
+  {
+    title: 'Iron & Board',
+    description: 'Look your best.',
+    details: 'Steam iron with adjustable temperature and full-size ironing board provided.',
+  },
+  {
+    title: 'Water Heater',
+    description: 'Hot water 24/7.',
+    details: 'Central water heating system providing instant hot water to all bathrooms.',
+  },
+  {
+    title: 'Free Parking',
+    description: 'Secure vehicle parking.',
+    details: 'Covered parking space for up to 2 vehicles with 24-hour security monitoring.',
+  },
+  {
+    title: 'BBQ Area',
+    description: 'Outdoor grilling fun.',
+    details: 'Dedicated BBQ area with built-in grill, seating for 8, and garden views. Equipment available.',
+  },
+  {
+    title: 'Prayer Facilities',
+    description: 'Spiritual comfort.',
+    details: 'Prayer mats, telekung, and Al-Quran provided. Qibla direction marked in each room.',
+  },
+];
+---
+
+<Layout
+  title="Facilities"
+  description="Explore all facilities and amenities at Homestay Kenangan. WiFi, air conditioning, full kitchen, Smart TV, free parking, BBQ area, and more."
+  canonical="https://your-homestay.vercel.app/facilities"
+  ogType="article"
+>
+  <Header />
+  <main>
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container-custom text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">Our Facilities</h1>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          We provide everything you need for a comfortable and memorable stay.
+        </p>
+      </div>
+    </section>
+
+    <!-- Facilities Grid -->
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Facilities list">
+      <div class="container-custom">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {facilities.map((facility) => (
+            <div class="card group hover:-translate-y-1">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary group-hover:text-white transition-colors" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 16v-4"/>
+                  <path d="M12 8h.01"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{facility.title}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{facility.description}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-500 leading-relaxed">{facility.details}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding bg-gradient-to-br from-primary to-primary-700">
+      <div class="container-custom text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Enjoy All These Amenities
+        </h2>
+        <p class="text-lg text-white/80 max-w-xl mx-auto mb-8">
+          Book your stay and enjoy access to all facilities.
+        </p>
+        <a
+          href="https://wa.me/60199144505?text=Hi%20I'm%20interested%20in%20booking%20your%20homestay."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all"
+          aria-label="Book now via WhatsApp"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Book via WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

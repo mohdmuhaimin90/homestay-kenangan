@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+const galleryData = [
+  {
+    location: 'Kemaman',
+    images: [
+      { src: '/images/kemaman/Living Hall.jpg', alt: 'Living hall at Homestay Kenangan Kemaman', cat: 'Living Room' },
+      { src: '/images/kemaman/Family Hall.jpg', alt: 'Family hall at Homestay Kenangan Kemaman', cat: 'Family Hall' },
+      { src: '/images/kemaman/Diining Area.jpg', alt: 'Dining area at Homestay Kenangan Kemaman', cat: 'Dining' },
+      { src: '/images/kemaman/Kitchen.jpg', alt: 'Kitchen at Homestay Kenangan Kemaman', cat: 'Kitchen' },
+      { src: '/images/kemaman/Room 1.jpg', alt: 'Bedroom 1 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+      { src: '/images/kemaman/Room 2.jpg', alt: 'Bedroom 2 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+      { src: '/images/kemaman/Room 3.jpg', alt: 'Bedroom 3 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+      { src: '/images/kemaman/AC.jpg', alt: 'Air conditioner at Homestay Kenangan Kemaman', cat: 'Amenities' },
+      { src: '/images/kemaman/iron space.jpg', alt: 'Ironing space at Homestay Kenangan Kemaman', cat: 'Amenities' },
+      { src: '/images/kemaman/ruang iron.jpg', alt: 'Ironing room at Homestay Kenangan Kemaman', cat: 'Amenities' },
+      { src: '/images/kemaman/Laundry.jpg', alt: 'Laundry area at Homestay Kenangan Kemaman', cat: 'Laundry' },
+      { src: '/images/kemaman/Halaman.png', alt: 'Outdoor area at Homestay Kenangan Kemaman', cat: 'Outdoor' },
+      { src: '/images/kemaman/photo_2026-07-08_01-01-31.jpg', alt: 'Homestay Kenangan Kemaman exterior', cat: 'Exterior' },
+    ],
+  },
+  {
+    location: 'Kuala Terengganu',
+    images: [
+      { src: '/images/kuala-terengganu/living room 1.jpg', alt: 'Living room 1 at Homestay Kenangan Kuala Terengganu', cat: 'Living Room' },
+      { src: '/images/kuala-terengganu/living room 2.jpg', alt: 'Living room 2 at Homestay Kenangan Kuala Terengganu', cat: 'Living Room' },
+      { src: '/images/kuala-terengganu/Dining area.jpg', alt: 'Dining area at Homestay Kenangan Kuala Terengganu', cat: 'Dining' },
+      { src: '/images/kuala-terengganu/Kitchen.jpg', alt: 'Kitchen at Homestay Kenangan Kuala Terengganu', cat: 'Kitchen' },
+      { src: '/images/kuala-terengganu/bedroom 1.jpg', alt: 'Bedroom 1 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+      { src: '/images/kuala-terengganu/bedroom 2.jpg', alt: 'Bedroom 2 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+      { src: '/images/kuala-terengganu/bedroom 3.jpg', alt: 'Bedroom 3 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+      { src: '/images/kuala-terengganu/bedroom 4.jpg', alt: 'Bedroom 4 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+      { src: '/images/kuala-terengganu/Bathroom 1.jpg', alt: 'Bathroom 1 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+      { src: '/images/kuala-terengganu/bathroom 2.jpg', alt: 'Bathroom 2 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+      { src: '/images/kuala-terengganu/bathroom 3.jpg', alt: 'Bathroom 3 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+      { src: '/images/kuala-terengganu/bathroom 4.jpg', alt: 'Bathroom 4 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+      { src: '/images/kuala-terengganu/Outdoor BBQ.jpg', alt: 'Outdoor BBQ area at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+      { src: '/images/kuala-terengganu/Outdoor playground.jpg', alt: 'Outdoor playground at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+      { src: '/images/kuala-terengganu/Outdoor.jpg', alt: 'Outdoor area at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+      { src: '/images/kuala-terengganu/exterior.jpg', alt: 'Exterior of Homestay Kenangan Kuala Terengganu', cat: 'Exterior' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Gallery"
+  description="Browse photos of Homestay Kenangan locations in Kemaman and Kuala Terengganu. See our spacious rooms, modern kitchen, cozy living areas, and more."
+  canonical="https://your-homestay.vercel.app/gallery"
+  ogType="article"
+>
+  <Header />
+  <main>
+    <section class="pt-32 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      <div class="container-custom text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">Our Gallery</h1>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          Browse photos from both our locations in Kemaman and Kuala Terengganu.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Gallery">
+      <div class="container-custom">
+        {galleryData.map(({ location, images }) => (
+          <div class="mb-12 last:mb-0">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              {location}
+            </h2>
+            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+              {images.map((img, i) => (
+                <a
+                  href={`#img-${location.toLowerCase().replace(/\s+/g, '-')}-${i}`}
+                  class="group block break-inside-avoid rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 cursor-pointer relative"
+                  aria-label={`View ${img.alt}`}
+                >
+                  <div class="relative overflow-hidden bg-gray-200 dark:bg-gray-700">
+                    <img src={img.src} alt={img.alt} class="w-full h-auto group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  <span class="absolute top-3 left-3 px-3 py-1 bg-black/50 text-white text-xs font-medium rounded-full backdrop-blur-sm">{img.cat}</span>
+                </a>
+              ))}
+            </div>
+
+            {images.map((img, i) => (
+              <div
+                id={`img-${location.toLowerCase().replace(/\s+/g, '-')}-${i}`}
+                class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm hidden items-center justify-center [&:target]:flex"
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${img.alt} lightbox`}
+              >
+                <a href="#" class="absolute inset-0 z-[61]" aria-label="Close lightbox"></a>
+                <div class="relative z-[62] max-w-5xl max-h-[90vh] mx-4 animate-fade-in">
+                  <img src={img.src} alt={img.alt} class="max-h-[85vh] w-auto mx-auto rounded-2xl shadow-2xl" />
+                  <p class="text-white text-center mt-4 text-sm">{img.alt}</p>
+                </div>
+                <a href="#" class="absolute top-4 right-4 z-[63] text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-colors" aria-label="Close lightbox">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-padding bg-gradient-to-br from-primary to-primary-700">
+      <div class="container-custom text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Like What You See?</h2>
+        <p class="text-lg text-white/80 max-w-xl mx-auto mb-8">Book your stay now and experience the comfort for yourself.</p>
+        <a href="https://wa.me/60199144505?text=Hi%20I'm%20interested%20in%20booking%20your%20homestay." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all" aria-label="Book now via WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>Book via WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

@@ -1,0 +1,126 @@
+---
+const homestays = [
+  {
+    name: 'Homestay Kenangan Kemaman',
+    address: 'Kemaman, Terengganu, Malaysia',
+    mapUrl: 'https://maps.app.goo.gl/KyBmg1iwgqLiSsha9',
+    coords: '4.1877663,103.4180616',
+    nearbyPlaces: [
+      { name: 'Masjid Berenjut', time: '3 min' },
+      { name: 'KPTM', time: '5 min' },
+      { name: 'Pantai Teluk Mak Nik', time: '10 min' },
+      { name: 'Pantai Chendor', time: '10 min' },
+      { name: 'Cherating', time: '15 min' },
+      { name: 'Bandar Chukai', time: '15 min' },
+      { name: 'Pasaraya Terdekat', time: '5 min' },
+    ],
+  },
+  {
+    name: 'Homestay Kenangan Kuala Terengganu',
+    address: 'Kuala Terengganu, Terengganu, Malaysia',
+    mapUrl: 'https://maps.app.goo.gl/SCBDByiRjyYQefny6',
+    coords: '5.3656086,103.0910559',
+    nearbyPlaces: [
+      { name: 'UMT', time: '6 km' },
+      { name: 'Unisza', time: '5 km' },
+      { name: 'Mydin Mall', time: '1.5 km' },
+      { name: 'Drawbridge', time: '9 km' },
+      { name: 'Pantai Teluk Ketapang', time: '4.5 km' },
+      { name: 'Pantai Batu Buruk', time: '12 km' },
+      { name: 'Pasar Payang', time: '11 km' },
+      { name: 'Stadium Gong Badak', time: '1.5 km' },
+      { name: 'KTCC / Mayang Mall', time: '11 km' },
+      { name: 'Airport', time: '2.5 km' },
+    ],
+  },
+];
+---
+
+<section id="location" class="section-padding bg-gray-50 dark:bg-gray-800/50" aria-label="Location">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="text-primary font-semibold text-sm tracking-wider uppercase">Location</span>
+      <h2 class="section-title">Our Locations</h2>
+      <p class="section-subtitle">
+        Two convenient locations in Terengganu, each close to popular attractions and amenities.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      {homestays.map((hs) => (
+        <div class="space-y-6">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            {hs.name}
+          </h3>
+
+          <!-- Map -->
+          <div class="rounded-2xl overflow-hidden shadow-soft h-[250px]">
+            <iframe
+              src={`https://www.google.com/maps?q=${hs.coords}&output=embed&z=17`}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Google Maps location of ${hs.name}`}
+              aria-label={`Map showing ${hs.name}`}
+            ></iframe>
+          </div>
+
+          <!-- Address & Nearby -->
+          <div class="card">
+            <div class="flex items-start gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{hs.address}</p>
+                <a
+                  href={hs.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-primary hover:text-primary-600 text-sm font-medium mt-1 transition-colors"
+                  aria-label={`Open ${hs.name} in Google Maps`}
+                >
+                  Open in Google Maps
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Nearby Attractions</h4>
+            <div class="space-y-2">
+              {hs.nearbyPlaces.map((place) => (
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-50 dark:bg-gray-700/50 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors group" itemscope itemtype="https://schema.org/Place">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                      </svg>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300" itemprop="name">{place.name}</span>
+                  </div>
+                  <span class="text-xs font-semibold text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">{place.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

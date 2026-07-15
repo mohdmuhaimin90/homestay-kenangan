@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Layout
+  title="404 - Page Not Found"
+  description="The page you are looking for does not exist. Return to Homestay Kenangan homepage."
+  canonical="https://your-homestay.vercel.app/404"
+  ogType="website"
+>
+  <main class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="container-custom text-center py-20">
+      <div class="animate-fade-in">
+        <div class="w-24 h-24 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+
+        <h1 class="text-8xl md:text-9xl font-extrabold text-primary mb-4">404</h1>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">Page Not Found</h2>
+        <p class="text-gray-400 max-w-md mx-auto mb-8 leading-relaxed">
+          Oops! The page you are looking for does not exist. It might have been moved or deleted.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/"
+            class="btn-primary text-lg px-8 py-4"
+            aria-label="Return to homepage"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Back to Home
+          </a>
+          <a
+            href="https://wa.me/60199144505?text=Hi%20I'm%20interested%20in%20booking%20your%20homestay."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary text-lg px-8 py-4 border-white/30 text-white hover:bg-white/10"
+            aria-label="Contact us on WhatsApp"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <WhatsAppButton />
+</Layout>

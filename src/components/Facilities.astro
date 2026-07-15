@@ -1,0 +1,125 @@
+---
+interface Facility {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const facilities: Facility[] = [
+  {
+    title: 'WiFi',
+    description: 'High-speed fiber optic internet throughout the homestay.',
+    icon: 'wifi',
+  },
+  {
+    title: 'Air Conditioner',
+    description: 'Split unit air conditioning in every room for maximum comfort.',
+    icon: 'wind',
+  },
+  {
+    title: 'Smart TV',
+    description: '45-inch Smart TV with Netflix and YouTube access.',
+    icon: 'tv',
+  },
+  {
+    title: 'Kitchen',
+    description: 'Fully equipped kitchen with modern appliances and cookware.',
+    icon: 'cooking-pot',
+  },
+  {
+    title: 'Refrigerator',
+    description: 'Large refrigerator with freezer compartment.',
+    icon: 'refrigerator',
+  },
+  {
+    title: 'Rice Cooker',
+    description: 'Automatic rice cooker for convenient meal preparation.',
+    icon: 'utensils-crossed',
+  },
+  {
+    title: 'Microwave',
+    description: 'Microwave oven for quick heating and cooking.',
+    icon: 'microwave',
+  },
+  {
+    title: 'Washing Machine',
+    description: 'Automatic washing machine for your laundry needs.',
+    icon: 'washing-machine',
+  },
+  {
+    title: 'Iron',
+    description: 'Steam iron with ironing board provided.',
+    icon: 'iron',
+  },
+  {
+    title: 'Water Heater',
+    description: '24-hour hot water supply for all bathrooms.',
+    icon: 'thermometer',
+  },
+  {
+    title: 'Free Parking',
+    description: 'Secure parking space for up to 2 vehicles.',
+    icon: 'car',
+  },
+  {
+    title: 'BBQ Area',
+    description: 'Outdoor BBQ pit with seating area for gatherings.',
+    icon: 'flame',
+  },
+  {
+    title: 'Prayer Mat',
+    description: 'Prayer mats and Al-Quran provided for Muslim guests.',
+    icon: 'prayer',
+  },
+];
+---
+
+<section id="facilities" class="section-padding bg-white dark:bg-gray-900" aria-label="Facilities">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="text-primary font-semibold text-sm tracking-wider uppercase">Facilities</span>
+      <h2 class="section-title">Amenities & Facilities</h2>
+      <p class="section-subtitle">
+        Everything you need for a comfortable and enjoyable stay.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {facilities.map((facility) => (
+        <div
+          class="group card hover:-translate-y-1 hover:shadow-hover cursor-default"
+          itemscope
+          itemtype="https://schema.org/LocationFeatureSpecification"
+        >
+          <div class="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary group-hover:text-white transition-colors" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4"/>
+              <path d="M12 8h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" itemprop="name">
+            {facility.title}
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed" itemprop="description">
+            {facility.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="/facilities"
+        class="btn-primary"
+        aria-label="View all facilities details"
+      >
+        View All Facilities
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

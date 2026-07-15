@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Gallery from '../components/Gallery.astro';
+import Facilities from '../components/Facilities.astro';
+import Location from '../components/Location.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Layout
+  title="Home"
+  description="Homestay Kenangan - Clean, comfortable and affordable family homestays in Kemaman and Kuala Terengganu. Book via WhatsApp for the best rates!"
+>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <Gallery />
+    <Facilities />
+    <Location />
+    <Faq />
+    <Contact />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</Layout>

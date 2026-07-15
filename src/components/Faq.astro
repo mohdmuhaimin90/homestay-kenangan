@@ -1,0 +1,94 @@
+---
+const faqs = [
+  {
+    question: 'What is the check-in and check-out time?',
+    answer: 'Check-in time is from 2:00 PM and check-out time is at 12:00 PM. Early check-in and late check-out are subject to availability.',
+  },
+  {
+    question: 'Is there free WiFi available?',
+    answer: 'WiFi is available at our Kuala Terengganu location. Please note that our Kemaman location does not have WiFi.',
+  },
+  {
+    question: 'Do you provide parking?',
+    answer: 'Yes, we offer free parking. Our Kemaman location can accommodate 2-3 cars, while our Kuala Terengganu location has parking for up to 10 cars.',
+  },
+  {
+    question: 'Is the homestay suitable for families with children?',
+    answer: 'Absolutely! Our homestay is family-friendly and equipped with amenities suitable for guests of all ages. We provide baby-friendly facilities upon request.',
+  },
+  {
+    question: 'Can I cook in the homestay?',
+    answer: 'Yes, our homestay comes with a fully equipped kitchen including a stove, refrigerator, rice cooker, microwave, and all necessary cookware and utensils.',
+  },
+  {
+    question: 'Is there a BBQ area?',
+    answer: 'Yes, we have an outdoor BBQ area with a grill pit and seating. BBQ equipment can be provided upon prior arrangement.',
+  },
+  {
+    question: 'How do I make a booking?',
+    answer: 'You can book directly through WhatsApp. Simply click the "Book Now" button on our website and send us a message. We will confirm your booking promptly.',
+  },
+  {
+    question: 'What is the cancellation policy?',
+    answer: 'Free cancellation is available up to 1 day before check-in. Please contact us for any changes to your booking.',
+  },
+  {
+    question: 'Are pets allowed?',
+    answer: 'We currently do not allow pets in the homestay to maintain cleanliness and comfort for all guests.',
+  },
+  {
+    question: 'Is the homestay Muslim-friendly?',
+    answer: 'Yes, we provide prayer mats, Al-Quran, and a comfortable environment for Muslim guests. The kitchen is also equipped for halal food preparation.',
+  },
+];
+---
+
+<section id="faq" class="section-padding bg-white dark:bg-gray-900" aria-label="Frequently asked questions">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="text-primary font-semibold text-sm tracking-wider uppercase">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        Everything you need to know about staying with us.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-3" itemscope itemtype="https://schema.org/FAQPage">
+      {faqs.map((faq, index) => (
+        <details
+          class="group card p-0 overflow-hidden"
+          itemscope
+          itemprop="mainEntity"
+          itemtype="https://schema.org/Question"
+        >
+          <summary
+            class="flex items-center justify-between p-5 cursor-pointer list-none text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            aria-label={faq.question}
+          >
+            <span class="pr-4" itemprop="name">{faq.question}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" itemprop="text">
+              {faq.answer}
+            </p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,111 @@
+---
+const kemamanImages = [
+  { src: '/images/kemaman/Living Hall.jpg', alt: 'Living hall at Homestay Kenangan Kemaman', cat: 'Living Room' },
+  { src: '/images/kemaman/Family Hall.jpg', alt: 'Family hall at Homestay Kenangan Kemaman', cat: 'Family Hall' },
+  { src: '/images/kemaman/Diining Area.jpg', alt: 'Dining area at Homestay Kenangan Kemaman', cat: 'Dining' },
+  { src: '/images/kemaman/Kitchen.jpg', alt: 'Kitchen at Homestay Kenangan Kemaman', cat: 'Kitchen' },
+  { src: '/images/kemaman/Room 1.jpg', alt: 'Bedroom 1 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+  { src: '/images/kemaman/Room 2.jpg', alt: 'Bedroom 2 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+  { src: '/images/kemaman/Room 3.jpg', alt: 'Bedroom 3 at Homestay Kenangan Kemaman', cat: 'Bedroom' },
+];
+
+const ktImages = [
+  { src: '/images/kuala-terengganu/living room 1.jpg', alt: 'Living room 1 at Homestay Kenangan Kuala Terengganu', cat: 'Living Room' },
+  { src: '/images/kuala-terengganu/living room 2.jpg', alt: 'Living room 2 at Homestay Kenangan Kuala Terengganu', cat: 'Living Room' },
+  { src: '/images/kuala-terengganu/Dining area.jpg', alt: 'Dining area at Homestay Kenangan Kuala Terengganu', cat: 'Dining' },
+  { src: '/images/kuala-terengganu/Kitchen.jpg', alt: 'Kitchen at Homestay Kenangan Kuala Terengganu', cat: 'Kitchen' },
+  { src: '/images/kuala-terengganu/bedroom 1.jpg', alt: 'Bedroom 1 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+  { src: '/images/kuala-terengganu/bedroom 2.jpg', alt: 'Bedroom 2 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+  { src: '/images/kuala-terengganu/bedroom 3.jpg', alt: 'Bedroom 3 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+  { src: '/images/kuala-terengganu/bedroom 4.jpg', alt: 'Bedroom 4 at Homestay Kenangan Kuala Terengganu', cat: 'Bedroom' },
+  { src: '/images/kuala-terengganu/Bathroom 1.jpg', alt: 'Bathroom 1 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+  { src: '/images/kuala-terengganu/bathroom 2.jpg', alt: 'Bathroom 2 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+  { src: '/images/kuala-terengganu/bathroom 3.jpg', alt: 'Bathroom 3 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+  { src: '/images/kuala-terengganu/bathroom 4.jpg', alt: 'Bathroom 4 at Homestay Kenangan Kuala Terengganu', cat: 'Bathroom' },
+  { src: '/images/kuala-terengganu/Outdoor BBQ.jpg', alt: 'Outdoor BBQ area at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+  { src: '/images/kuala-terengganu/Outdoor playground.jpg', alt: 'Outdoor playground at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+  { src: '/images/kuala-terengganu/Outdoor.jpg', alt: 'Outdoor area at Homestay Kenangan Kuala Terengganu', cat: 'Outdoor' },
+  { src: '/images/kuala-terengganu/exterior.jpg', alt: 'Exterior of Homestay Kenangan Kuala Terengganu', cat: 'Exterior' },
+];
+
+const allImages = [
+  { location: 'Kemaman', images: kemamanImages },
+  { location: 'Kuala Terengganu', images: ktImages },
+];
+---
+
+<section id="gallery" class="section-padding bg-gray-50 dark:bg-gray-800/50" aria-label="Photo gallery">
+  <div class="container-custom">
+    <div class="text-center mb-12">
+      <span class="text-primary font-semibold text-sm tracking-wider uppercase">Gallery</span>
+      <h2 class="section-title">Our Homestay Gallery</h2>
+      <p class="section-subtitle">
+        Browse photos from both our locations in Kemaman and Kuala Terengganu.
+      </p>
+    </div>
+
+    {allImages.map(({ location, images }) => (
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          {location}
+        </h3>
+        <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+          {images.map((img, i) => (
+            <a
+              href={`#img-${location.toLowerCase().replace(/\s+/g, '-')}-${i}`}
+              class="group block break-inside-avoid rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 cursor-pointer relative"
+              aria-label={`View ${img.alt}`}
+            >
+              <div class="relative overflow-hidden bg-gray-200 dark:bg-gray-700">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  class="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <span class="absolute top-3 left-3 px-3 py-1 bg-black/50 text-white text-xs font-medium rounded-full backdrop-blur-sm">
+                {img.cat}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <!-- Lightbox for this location -->
+        {images.map((img, i) => (
+          <div
+            id={`img-${location.toLowerCase().replace(/\s+/g, '-')}-${i}`}
+            class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm hidden items-center justify-center [&:target]:flex"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${img.alt} lightbox`}
+          >
+            <a href="#" class="absolute inset-0 z-[61]" aria-label="Close lightbox"></a>
+            <div class="relative z-[62] max-w-5xl max-h-[90vh] mx-4 animate-fade-in">
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="max-h-[85vh] w-auto mx-auto rounded-2xl shadow-2xl"
+              />
+              <p class="text-white text-center mt-4 text-sm">{img.alt}</p>
+            </div>
+            <a
+              href="#"
+              class="absolute top-4 right-4 z-[63] text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-colors"
+              aria-label="Close lightbox"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>

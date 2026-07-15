@@ -1,0 +1,5 @@
+# robots.txt for Comfort Family Homestay
+User-agent: *
+Allow: /
+
+Sitemap: https://your-homestay.vercel.app/sitemap.xml
