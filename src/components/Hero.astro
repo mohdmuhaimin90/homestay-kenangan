@@ -5,29 +5,33 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-    <div class="absolute inset-0 bg-grid opacity-30"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30"></div>
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/kuala-terengganu/exterior.jpg"
+      alt="Exterior of Homestay Kenangan Kuala Terengganu"
+      class="w-full h-full object-cover"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-black/40"></div>
   </div>
-
-  <!-- Decorative Elements -->
-  <div class="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
 
   <!-- Content -->
   <div class="container-custom relative z-10 text-center py-32 md:py-40">
     <div class="animate-fade-in">
-      <span class="inline-block px-4 py-1.5 bg-primary/20 text-primary-200 text-sm font-medium rounded-full mb-6 border border-primary/30">
-        Welcome to Homestay Kenangan
+      <span class="inline-block px-4 py-1.5 bg-white/10 text-white text-sm font-medium rounded-full mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider">
+        Homestay Kenangan
       </span>
 
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 max-w-4xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-6 max-w-4xl mx-auto">
         Comfortable Family Homestay for Your Perfect Stay
       </h1>
 
-      <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-        Enjoy a clean, spacious and affordable homestay suitable for families, vacations and business trips. Two convenient locations in Kemaman and Kuala Terengganu.
+      <p class="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-4 leading-relaxed">
+        Enjoy a clean, spacious and affordable homestay suitable for families, vacations and business trips.
+      </p>
+      <p class="text-sm md:text-base text-white/70 mb-10 uppercase tracking-wider">
+        Kemaman, Terengganu &nbsp;·&nbsp; Kuala Terengganu, Terengganu
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -35,7 +39,7 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary text-lg px-8 py-4 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 animate-float"
+          class="btn-primary text-lg px-8 py-4 shadow-lg shadow-black/20 hover:shadow-xl animate-float"
           aria-label="Book now via WhatsApp"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -46,7 +50,7 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 
         <a
           href="/gallery"
-          class="btn-primary text-lg px-8 py-4"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border-2 border-white/40 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:shadow-lg active:scale-[0.97]"
           aria-label="View gallery"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

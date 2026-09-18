@@ -1,0 +1,122 @@
+---
+interface GalleryImage {
+  src: string;
+  alt: string;
+  cat?: string;
+}
+
+interface Props {
+  location: string;
+  images: GalleryImage[];
+  slideClass?: string;
+}
+
+const { location, images, slideClass } = Astro.props;
+const id = location.toLowerCase().replace(/\s+/g, '-');
+const sliderId = `slider-${id}`;
+const defaultSlideClass = 'w-[78vw] sm:w-[420px] md:w-[480px]';
+const itemClass = slideClass || defaultSlideClass;
+const total = images.length;
+---
+
+<div class="relative" data-slider>
+  <div
+    id={sliderId}
+    class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide pb-2"
+    data-slider-track
+    role="region"
+    aria-label={`${location} photo slider`}
+    aria-roledescription="carousel"
+  >
+    {images.map((img, i) => (
+      <a
+        href={`#${id}-img-${i}`}
+        class={`${itemClass} snap-center shrink-0 group block relative rounded-2xl overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300`}
+        aria-label={`View ${img.alt}`}
+        aria-roledescription="slide"
+      >
+        <img
+          src={img.src}
+          alt={img.alt}
+          class="w-full h-[220px] sm:h-[260px] object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        {img.cat && (
+          <span class="absolute top-3 left-3 px-3 py-1 bg-secondary/90 text-white text-xs font-medium rounded-full backdrop-blur-sm">
+            {img.cat}
+          </span>
+        )}
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Prev / Next Arrows -->
+  <button
+    type="button"
+    data-slider-prev
+    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 text-primary rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all focus:outline-none focus:ring-2 focus:ring-primary"
+    aria-label={`Previous ${location} photo`}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <button
+    type="button"
+    data-slider-next
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 text-primary rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all focus:outline-none focus:ring-2 focus:ring-primary"
+    aria-label={`Next ${location} photo`}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Lightbox -->
+{images.map((img, i) => (
+  <div
+    id={`${id}-img-${i}`}
+    class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm hidden items-center justify-center [&:target]:flex"
+    role="dialog"
+    aria-modal="true"
+    aria-label={`${img.alt} lightbox`}
+  >
+    <a href="#gallery" class="absolute inset-0 z-[61]" aria-label="Close lightbox"></a>
+    <div class="relative z-[62] max-w-5xl max-h-[90vh] mx-4 animate-fade-in">
+      <img
+        src={img.src}
+        alt={img.alt}
+        class="max-h-[85vh] w-auto mx-auto rounded-2xl shadow-2xl"
+      />
+      <p class="text-white text-center mt-4 text-sm">{img.alt}</p>
+    </div>
+    <a
+      href="#gallery"
+      class="absolute top-4 right-4 z-[63] text-white/80 hover:text-white bg-black/30 hover:bg-black/50 rounded-full p-2 transition-colors"
+      aria-label="Close lightbox"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </a>
+  </div>
+))}
+
+<script>
+  const track = document.querySelector(`#${sliderId}`) as HTMLElement | null;
+  const prevBtn = track?.closest('[data-slider]')?.querySelector('[data-slider-prev]') as HTMLElement | null;
+  const nextBtn = track?.closest('[data-slider]')?.querySelector('[data-slider-next]') as HTMLElement | null;
+
+  const scrollByCard = (dir: number) => {
+    if (!track) return;
+    const item = track.querySelector(':scope > a');
+    const width = item ? item.getBoundingClientRect().width + 16 : 420;
+    track.scrollBy({ left: dir * width, behavior: 'smooth' });
+  };
+
+  nextBtn?.addEventListener('click', () => scrollByCard(1));
+  prevBtn?.addEventListener('click', () => scrollByCard(-1));
+</script>
