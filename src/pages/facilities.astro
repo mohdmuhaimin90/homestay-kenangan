@@ -8,6 +8,7 @@ interface Facility {
   title: string;
   description: string;
   details: string;
+  emoji: string;
 }
 
 const facilities: Facility[] = [
@@ -15,66 +16,79 @@ const facilities: Facility[] = [
     title: 'High-Speed WiFi',
     description: 'Stay connected with our fiber optic internet.',
     details: 'Unlimited high-speed WiFi available throughout the homestay. Perfect for streaming, video calls, and remote work.',
+    emoji: '📶',
   },
   {
     title: 'Air Conditioning',
     description: 'Stay cool and comfortable.',
     details: 'Split unit air conditioners in every bedroom and living room. Remote-controlled for your convenience.',
+    emoji: '❄️',
   },
   {
     title: 'Smart TV',
     description: 'Entertainment at your fingertips.',
     details: '45-inch Smart TV with Netflix, YouTube, and local channels. Enjoy your favorite shows and movies.',
+    emoji: '📺',
   },
   {
     title: 'Full Kitchen',
     description: 'Cook your own meals.',
     details: 'Fully equipped kitchen with stove, oven, cookware, utensils, and dining set for 8 people.',
+    emoji: '🍳',
   },
   {
     title: 'Refrigerator',
     description: 'Keep your food fresh.',
     details: 'Large capacity refrigerator with separate freezer compartment, ice maker, and water dispenser.',
+    emoji: '🧊',
   },
   {
     title: 'Rice Cooker',
     description: 'Perfect rice every time.',
     details: 'Automatic rice cooker with multiple cooking modes for rice, porridge, and steaming.',
+    emoji: '🍚',
   },
   {
     title: 'Microwave',
     description: 'Quick and convenient.',
     details: 'Digital microwave oven with grill function, auto-cook menus, and defrost setting.',
+    emoji: '⚡',
   },
   {
     title: 'Washing Machine',
     description: 'Laundry made easy.',
     details: 'Automatic front-loading washing machine with multiple wash programs.',
+    emoji: '🧺',
   },
   {
     title: 'Iron & Board',
     description: 'Look your best.',
     details: 'Steam iron with adjustable temperature and full-size ironing board provided.',
+    emoji: '👕',
   },
   {
     title: 'Water Heater',
     description: 'Hot water 24/7.',
     details: 'Central water heating system providing instant hot water to all bathrooms.',
+    emoji: '🚿',
   },
   {
     title: 'Free Parking',
     description: 'Secure vehicle parking.',
     details: 'Covered parking space for up to 2 vehicles with 24-hour security monitoring.',
+    emoji: '🅿️',
   },
   {
     title: 'BBQ Area',
     description: 'Outdoor grilling fun.',
     details: 'Dedicated BBQ area with built-in grill, seating for 8, and garden views. Equipment available.',
+    emoji: '🍖',
   },
   {
     title: 'Prayer Facilities',
     description: 'Spiritual comfort.',
     details: 'Prayer mats, telekung, and Al-Quran provided. Qibla direction marked in each room.',
+    emoji: '🕌',
   },
 ];
 ---
@@ -110,7 +124,10 @@ const facilities: Facility[] = [
                   <path d="M12 8h.01"/>
                 </svg>
               </div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{facility.title}</h3>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                <span aria-hidden="true" class="text-xl">{facility.emoji}</span>
+                {facility.title}
+              </h3>
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{facility.description}</p>
               <p class="text-xs text-gray-500 dark:text-gray-500 leading-relaxed">{facility.details}</p>
             </div>
