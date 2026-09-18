@@ -3,6 +3,7 @@ interface Facility {
   title: string;
   description: string;
   icon: string;
+  emoji: string;
 }
 
 const facilities: Facility[] = [
@@ -10,66 +11,79 @@ const facilities: Facility[] = [
     title: 'WiFi',
     description: 'High-speed fiber optic internet throughout the homestay.',
     icon: 'wifi',
+    emoji: '📶',
   },
   {
     title: 'Air Conditioner',
     description: 'Split unit air conditioning in every room for maximum comfort.',
     icon: 'wind',
+    emoji: '❄️',
   },
   {
     title: 'Smart TV',
     description: '45-inch Smart TV with Netflix and YouTube access.',
     icon: 'tv',
+    emoji: '📺',
   },
   {
     title: 'Kitchen',
     description: 'Fully equipped kitchen with modern appliances and cookware.',
     icon: 'cooking-pot',
+    emoji: '🍳',
   },
   {
     title: 'Refrigerator',
     description: 'Large refrigerator with freezer compartment.',
     icon: 'refrigerator',
+    emoji: '🧊',
   },
   {
     title: 'Rice Cooker',
     description: 'Automatic rice cooker for convenient meal preparation.',
     icon: 'utensils-crossed',
+    emoji: '🍚',
   },
   {
     title: 'Microwave',
     description: 'Microwave oven for quick heating and cooking.',
     icon: 'microwave',
+    emoji: '⚡',
   },
   {
     title: 'Washing Machine',
     description: 'Automatic washing machine for your laundry needs.',
     icon: 'washing-machine',
+    emoji: '🧺',
   },
   {
     title: 'Iron',
     description: 'Steam iron with ironing board provided.',
     icon: 'iron',
+    emoji: '👕',
   },
   {
     title: 'Water Heater',
     description: '24-hour hot water supply for all bathrooms.',
     icon: 'thermometer',
+    emoji: '🚿',
   },
   {
     title: 'Free Parking',
     description: 'Secure parking space for up to 2 vehicles.',
     icon: 'car',
+    emoji: '🅿️',
   },
   {
     title: 'BBQ Area',
     description: 'Outdoor BBQ pit with seating area for gatherings.',
     icon: 'flame',
+    emoji: '🍖',
   },
   {
     title: 'Prayer Mat',
     description: 'Prayer mats and Al-Quran provided for Muslim guests.',
     icon: 'prayer',
+    emoji: '🕌',
   },
 ];
 ---
@@ -91,12 +105,8 @@ const facilities: Facility[] = [
           itemscope
           itemtype="https://schema.org/LocationFeatureSpecification"
         >
-          <div class="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary group-hover:text-white transition-colors" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 16v-4"/>
-              <path d="M12 8h.01"/>
-            </svg>
+          <div class="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+            <span class="text-2xl leading-none" aria-hidden="true">{facility.emoji}</span>
           </div>
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" itemprop="name">
             {facility.title}
