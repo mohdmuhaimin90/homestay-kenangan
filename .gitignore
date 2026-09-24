@@ -3,3 +3,7 @@ dist/
 .vscode/
 *.local
 .DS_Store
+
+# Environment (JANGAN commit real values)
+.env*
+!.env.example
