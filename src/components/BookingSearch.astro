@@ -1,0 +1,64 @@
+---
+const WHATSAPP_NUMBER = '60199144505';
+---
+
+<section id="booking-search" class="py-14 md:py-16 bg-white border-b border-gray-100">
+  <div class="container-custom">
+    <p class="section-eyebrow">Plan Your Stay</p>
+    <h2 class="section-title !mb-8">Search Available Dates</h2>
+
+    <form id="booking-search-form" class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+      <div class="text-left">
+        <label for="check-in" class="block text-[13px] font-bold uppercase tracking-wide text-gray-700 mb-2">Check-in</label>
+        <input
+          type="date"
+          id="check-in"
+          name="check-in"
+          required
+          class="w-full h-[46px] px-4 border border-gray-300 text-gray-800 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+        />
+      </div>
+      <div class="text-left">
+        <label for="check-out" class="block text-[13px] font-bold uppercase tracking-wide text-gray-700 mb-2">Check-out</label>
+        <input
+          type="date"
+          id="check-out"
+          name="check-out"
+          required
+          class="w-full h-[46px] px-4 border border-gray-300 text-gray-800 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+        />
+      </div>
+      <button type="submit" class="btn-primary h-[46px] w-full">Search</button>
+    </form>
+
+    <p class="text-center text-sm text-gray-500 mt-4">
+      We will confirm availability instantly on WhatsApp.
+    </p>
+  </div>
+</section>
+
+<script define:vars={{ whatsappNumber: WHATSAPP_NUMBER }}>
+  const form = document.getElementById('booking-search-form');
+  const checkIn = document.getElementById('check-in');
+  const checkOut = document.getElementById('check-out');
+
+  const today = new Date().toISOString().split('T')[0];
+  if (checkIn) checkIn.min = today;
+  if (checkOut) checkOut.min = today;
+
+  checkIn?.addEventListener('change', () => {
+    if (checkOut) {
+      checkOut.min = checkIn.value || today;
+      if (checkOut.value && checkOut.value <= checkIn.value) checkOut.value = '';
+    }
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!checkIn?.value || !checkOut?.value) return;
+    const message = encodeURIComponent(
+      `Hi, I'd like to check availability.\n\nCheck-in: ${checkIn.value}\nCheck-out: ${checkOut.value}`
+    );
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener');
+  });
+</script>

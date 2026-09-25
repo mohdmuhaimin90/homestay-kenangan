@@ -15,32 +15,33 @@ const quickLinks = [
 ];
 ---
 
-<footer class="bg-gray-900 dark:bg-gray-950 text-gray-300" aria-label="Site footer">
+<footer class="bg-cream text-gray-700" aria-label="Site footer">
   <div class="container-custom py-16">
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
       <!-- Brand -->
       <div class="space-y-4">
-        <a href="/" class="flex items-center gap-2 text-xl font-bold text-white hover:text-primary transition-colors" aria-label="Homestay Kenangan - Home">
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-          <span>Homestay Kenangan</span>
+        <a href="/" class="inline-block" aria-label="Homestay Kenangan - Home">
+          <img
+            src="/images/logo-dark.png"
+            alt="Homestay Kenangan"
+            class="w-auto max-w-[170px] h-[50px]"
+            loading="lazy"
+          />
         </a>
-        <p class="text-sm text-gray-400 leading-relaxed">
+        <p class="text-sm text-gray-600 leading-relaxed">
           Clean, comfortable, and affordable homestays in Kemaman and Kuala Terengganu. Perfect for families and travelers.
         </p>
       </div>
 
       <!-- Quick Links -->
       <div>
-        <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+        <h3 class="font-display text-black font-semibold mb-4">Quick Links</h3>
         <ul class="space-y-2.5">
           {quickLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="text-sm text-gray-400 hover:text-primary transition-colors"
+                class="text-sm text-gray-600 hover:text-primary transition-colors"
               >
                 {link.label}
               </a>
@@ -51,14 +52,14 @@ const quickLinks = [
 
       <!-- Contact -->
       <div>
-        <h3 class="text-white font-semibold mb-4">Contact</h3>
+        <h3 class="font-display text-black font-semibold mb-4">Contact</h3>
         <ul class="space-y-2.5">
           <li>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+              class="text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2"
               aria-label="Contact via WhatsApp"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -70,7 +71,7 @@ const quickLinks = [
           <li>
             <a
               href="mailto:kenangan.homestay@gmail.com"
-              class="text-sm text-gray-400 hover:text-primary transition-colors flex items-center gap-2"
+              class="text-sm text-gray-600 hover:text-primary transition-colors flex items-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -79,7 +80,7 @@ const quickLinks = [
               kenangan.homestay@gmail.com
             </a>
           </li>
-          <li class="flex items-center gap-2 text-sm text-gray-400">
+          <li class="flex items-center gap-2 text-sm text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
@@ -91,13 +92,13 @@ const quickLinks = [
 
       <!-- Map -->
       <div>
-        <h3 class="text-white font-semibold mb-4">Find Us</h3>
+        <h3 class="font-display text-black font-semibold mb-4">Find Us</h3>
         <div class="space-y-2">
           <a
             href="https://maps.app.goo.gl/KyBmg1iwgqLiSsha9"
             target="_blank"
             rel="noopener noreferrer"
-            class="block text-sm text-gray-400 hover:text-primary transition-colors"
+            class="block text-sm text-gray-600 hover:text-primary transition-colors"
             aria-label="Open Kemaman location in Google Maps"
           >
             Homestay Kenangan Kemaman
@@ -106,15 +107,15 @@ const quickLinks = [
             href="https://maps.app.goo.gl/SCBDByiRjyYQefny6"
             target="_blank"
             rel="noopener noreferrer"
-            class="block text-sm text-gray-400 hover:text-primary transition-colors"
+            class="block text-sm text-gray-600 hover:text-primary transition-colors"
             aria-label="Open Kuala Terengganu location in Google Maps"
           >
             Homestay Kenangan Kuala Terengganu
           </a>
         </div>
-        <div class="mt-4 rounded-xl overflow-hidden">
-          <div class="aspect-[4/3] bg-gray-800 rounded-xl flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500" aria-hidden="true">
+        <div class="mt-4 overflow-hidden">
+          <div class="aspect-[4/3] bg-white border border-gray-200 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
@@ -124,7 +125,7 @@ const quickLinks = [
     </div>
   </div>
 
-  <div class="border-t border-gray-800">
+  <div class="border-t border-gray-200">
     <div class="container-custom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-sm text-gray-500">
         &copy; {currentYear} Homestay Kenangan. All rights reserved.

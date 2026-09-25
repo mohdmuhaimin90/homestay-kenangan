@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -16,79 +16,79 @@ const facilities: Facility[] = [
     title: 'High-Speed WiFi',
     description: 'Stay connected with our fiber optic internet.',
     details: 'Unlimited high-speed WiFi available throughout the homestay. Perfect for streaming, video calls, and remote work.',
-    emoji: '📶',
+    emoji: 'ðŸ“¶',
   },
   {
     title: 'Air Conditioning',
     description: 'Stay cool and comfortable.',
     details: 'Split unit air conditioners in every bedroom and living room. Remote-controlled for your convenience.',
-    emoji: '❄️',
+    emoji: 'â„ï¸',
   },
   {
     title: 'Smart TV',
     description: 'Entertainment at your fingertips.',
     details: '45-inch Smart TV with Netflix, YouTube, and local channels. Enjoy your favorite shows and movies.',
-    emoji: '📺',
+    emoji: 'ðŸ“º',
   },
   {
     title: 'Full Kitchen',
     description: 'Cook your own meals.',
     details: 'Fully equipped kitchen with stove, oven, cookware, utensils, and dining set for 8 people.',
-    emoji: '🍳',
+    emoji: 'ðŸ³',
   },
   {
     title: 'Refrigerator',
     description: 'Keep your food fresh.',
     details: 'Large capacity refrigerator with separate freezer compartment, ice maker, and water dispenser.',
-    emoji: '🧊',
+    emoji: 'ðŸ§Š',
   },
   {
     title: 'Rice Cooker',
     description: 'Perfect rice every time.',
     details: 'Automatic rice cooker with multiple cooking modes for rice, porridge, and steaming.',
-    emoji: '🍚',
+    emoji: 'ðŸš',
   },
   {
     title: 'Microwave',
     description: 'Quick and convenient.',
     details: 'Digital microwave oven with grill function, auto-cook menus, and defrost setting.',
-    emoji: '⚡',
+    emoji: 'âš¡',
   },
   {
     title: 'Washing Machine',
     description: 'Laundry made easy.',
     details: 'Automatic front-loading washing machine with multiple wash programs.',
-    emoji: '🧺',
+    emoji: 'ðŸ§º',
   },
   {
     title: 'Iron & Board',
     description: 'Look your best.',
     details: 'Steam iron with adjustable temperature and full-size ironing board provided.',
-    emoji: '👕',
+    emoji: 'ðŸ‘•',
   },
   {
     title: 'Water Heater',
     description: 'Hot water 24/7.',
     details: 'Central water heating system providing instant hot water to all bathrooms.',
-    emoji: '🚿',
+    emoji: 'ðŸš¿',
   },
   {
     title: 'Free Parking',
     description: 'Secure vehicle parking.',
     details: 'Covered parking space for up to 2 vehicles with 24-hour security monitoring.',
-    emoji: '🅿️',
+    emoji: 'ðŸ…¿ï¸',
   },
   {
     title: 'BBQ Area',
     description: 'Outdoor grilling fun.',
     details: 'Dedicated BBQ area with built-in grill, seating for 8, and garden views. Equipment available.',
-    emoji: '🍖',
+    emoji: 'ðŸ–',
   },
   {
     title: 'Prayer Facilities',
     description: 'Spiritual comfort.',
     details: 'Prayer mats, telekung, and Al-Quran provided. Qibla direction marked in each room.',
-    emoji: '🕌',
+    emoji: 'ðŸ•Œ',
   },
 ];
 ---
@@ -102,7 +102,7 @@ const facilities: Facility[] = [
   <Header />
   <main>
     <!-- Page Header -->
-    <section class="pt-32 pb-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <section class="pt-32 pb-16 bg-forest text-white">
       <div class="container-custom text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-4">Our Facilities</h1>
         <p class="text-lg text-gray-300 max-w-2xl mx-auto">
@@ -116,11 +116,11 @@ const facilities: Facility[] = [
       <div class="container-custom">
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {facilities.map((facility) => (
-            <div class="card group hover:-translate-y-1">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+            <div class="card border border-gray-100 p-6 group hover:-translate-y-1 hover:border-primary/40 transition-all">
+              <div class="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
                 <span class="text-2xl leading-none" aria-hidden="true">{facility.emoji}</span>
               </div>
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 class="font-display text-lg font-semibold text-black mb-2">
                 {facility.title}
               </h3>
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{facility.description}</p>
@@ -132,7 +132,7 @@ const facilities: Facility[] = [
     </section>
 
     <!-- CTA -->
-    <section class="section-padding bg-gradient-to-br from-primary to-primary-700">
+    <section class="section-padding bg-primary">
       <div class="container-custom text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Enjoy All These Amenities
@@ -144,7 +144,7 @@ const facilities: Facility[] = [
           href="https://wa.me/60199144505?text=Hi%20I'm%20interested%20in%20booking%20your%20homestay."
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all"
+          class="inline-flex items-center justify-center gap-2 h-[46px] px-8 bg-white text-primary text-[13px] font-bold uppercase tracking-wide hover:bg-black hover:text-white transition-colors"
           aria-label="Book now via WhatsApp"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

@@ -35,7 +35,7 @@ const jsonLd = {
   image: 'https://homestay-kenangan.vercel.app/images/kuala-terengganu/living%20room%201.jpg',
   numberOfProducts: 2,
   brand: 'Homestay Kenangan',
-  logo: 'https://homestay-kenangan.vercel.app/favicon.svg',
+  logo: 'https://homestay-kenangan.vercel.app/images/logo.png',
 };
 ---
 
@@ -46,8 +46,8 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#F97316" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#212121" />
+    <meta name="color-scheme" content="light" />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
@@ -81,13 +81,13 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hurricane&family=Lato:wght@300;400;700;900&family=Lora:wght@400;500;600;700&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Hurricane&family=Lato:wght@300;400;700;900&family=Lora:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -98,20 +98,6 @@ const jsonLd = {
     <title>{title} | {siteName}</title>
   </head>
   <body class="antialiased">
-    <script>
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        document.documentElement.classList.add('dark');
-      }
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (e.matches) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      });
-    </script>
-
     <slot />
   </body>
 </html>

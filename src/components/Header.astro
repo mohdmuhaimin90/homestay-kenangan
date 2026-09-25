@@ -12,24 +12,31 @@ const navLinks = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-all duration-300">
-  <nav class="container-custom flex items-center justify-between h-16 md:h-20" aria-label="Main navigation">
-    <a href="/" class="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary-600 transition-colors" aria-label="Homestay Kenangan - Home">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
-      </svg>
-      <span>Homestay Kenangan</span>
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300"
+>
+  <nav
+    class="container-custom flex items-center justify-between h-[60px] md:h-[90px] transition-all duration-300"
+    aria-label="Main navigation"
+  >
+    <a href="/" class="flex items-center" aria-label="Homestay Kenangan - Home">
+      <img
+        src="/images/logo.png"
+        alt="Homestay Kenangan"
+        class="w-auto max-w-[130px] md:max-w-[160px] h-[36px] md:h-[48px]"
+        fetchpriority="high"
+      />
     </a>
 
     <!-- Desktop Navigation -->
     <div class="hidden md:flex items-center gap-8">
-      <ul class="flex items-center gap-6">
+      <ul class="flex items-center gap-7">
         {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              class="font-display text-base font-medium text-white capitalize leading-none pb-1 border-b-2 border-transparent hover:border-white transition-colors"
             >
               {link.label}
             </a>
@@ -40,12 +47,9 @@ const navLinks = [
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-primary text-sm"
+        class="inline-flex items-center justify-center h-[42px] px-5 border border-white text-white text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-white hover:text-black"
         aria-label="Book now via WhatsApp"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
         Book Now
       </a>
     </div>
@@ -53,7 +57,7 @@ const navLinks = [
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-toggle"
-      class="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+      class="md:hidden p-2 text-white transition-colors"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
@@ -70,14 +74,14 @@ const navLinks = [
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-lg">
-    <div class="container-custom py-4 space-y-3">
-      <ul class="space-y-2">
+  <div id="mobile-menu" class="md:hidden hidden bg-ink border-t border-white/10 shadow-lg">
+    <div class="container-custom py-4">
+      <ul class="space-y-1">
         {navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="block px-4 py-2.5 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
+              class="block px-2 py-3 text-white font-display font-medium capitalize hover:text-accent transition-colors"
             >
               {link.label}
             </a>
@@ -88,12 +92,9 @@ const navLinks = [
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-primary w-full text-center text-sm mt-4"
+        class="mt-4 w-full inline-flex items-center justify-center h-[42px] px-5 border border-white text-white text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-white hover:text-black"
         aria-label="Book now via WhatsApp"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
         Book Now
       </a>
     </div>
@@ -101,37 +102,75 @@ const navLinks = [
 </header>
 
 <script>
+  const header = document.getElementById('site-header');
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
   const iconClose = document.getElementById('menu-icon-close');
+  let lastScroll = 0;
+
+  const closeMenu = () => {
+    if (!menu || !toggle) return;
+    menu.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  };
+
+  const onScroll = () => {
+    if (!header) return;
+    const y = window.scrollY;
+    if (y > 40) {
+      header.classList.remove('bg-transparent');
+      header.classList.add('bg-ink', 'shadow-lg');
+      header.style.height = '';
+      header.classList.add('stuck');
+    } else {
+      header.classList.add('bg-transparent');
+      header.classList.remove('bg-ink', 'shadow-lg', 'stuck');
+    }
+
+    if (y > lastScroll && y > 200 && menu?.classList.contains('hidden')) {
+      header.classList.add('-translate-y-full');
+    } else {
+      header.classList.remove('-translate-y-full');
+    }
+    lastScroll = y;
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
       iconOpen?.classList.toggle('hidden');
       iconClose?.classList.toggle('hidden');
     });
 
-    // Close menu on link click
     menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-        iconOpen?.classList.remove('hidden');
-        iconClose?.classList.add('hidden');
-      });
+      link.addEventListener('click', closeMenu);
     });
 
-    // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
-        iconOpen?.classList.remove('hidden');
-        iconClose?.classList.add('hidden');
+      if (!toggle.contains(e.target as Node) && !menu.contains(e.target as Node)) {
+        closeMenu();
       }
     });
   }
 </script>
+
+<style>
+  #site-header.stuck {
+    background-color: #212121;
+  }
+  #site-header.stuck nav {
+    height: 60px;
+  }
+  #site-header {
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+</style>

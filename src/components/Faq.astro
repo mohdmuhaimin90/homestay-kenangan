@@ -43,10 +43,10 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="section-padding bg-white dark:bg-gray-900" aria-label="Frequently asked questions">
+<section id="faq" class="section-padding bg-white" aria-label="Frequently asked questions">
   <div class="container-custom">
     <div class="text-center mb-12">
-      <span class="text-primary font-semibold text-sm tracking-wider uppercase">FAQ</span>
+      <p class="section-eyebrow">FAQ</p>
       <h2 class="section-title">Frequently Asked Questions</h2>
       <p class="section-subtitle">
         Everything you need to know about staying with us.
@@ -56,13 +56,13 @@ const faqs = [
     <div class="max-w-3xl mx-auto space-y-3" itemscope itemtype="https://schema.org/FAQPage">
       {faqs.map((faq, index) => (
         <details
-          class="group card p-0 overflow-hidden"
+          class="group card border border-gray-100 overflow-hidden"
           itemscope
           itemprop="mainEntity"
           itemtype="https://schema.org/Question"
         >
           <summary
-            class="flex items-center justify-between p-5 cursor-pointer list-none text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            class="flex items-center justify-between p-5 cursor-pointer list-none text-black font-display font-semibold hover:bg-cream transition-colors"
             aria-label={faq.question}
           >
             <span class="pr-4" itemprop="name">{faq.question}</span>
@@ -76,14 +76,14 @@ const faqs = [
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0"
+              class="text-primary group-open:rotate-180 transition-transform flex-shrink-0"
               aria-hidden="true"
             >
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </summary>
           <div class="px-5 pb-5" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed" itemprop="text">
+            <p class="text-gray-600 text-sm leading-relaxed" itemprop="text">
               {faq.answer}
             </p>
           </div>

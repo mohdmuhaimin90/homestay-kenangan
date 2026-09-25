@@ -1,72 +1,34 @@
 ---
-const WHATSAPP_NUMBER = '60199144505';
-const WHATSAPP_MESSAGE = encodeURIComponent("Hi I'm interested in booking your homestay.");
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+const heroImage = '/images/kuala-terengganu/exterior.jpg';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
   <!-- Background Image -->
   <div class="absolute inset-0">
     <img
-      src="/images/kuala-terengganu/exterior.jpg"
+      src={heroImage}
       alt="Exterior of Homestay Kenangan Kuala Terengganu"
       class="w-full h-full object-cover"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-black/40"></div>
+    <div class="absolute inset-0 bg-[rgba(10,10,10,0.3)]"></div>
   </div>
 
   <!-- Content -->
-  <div class="container-custom relative z-10 text-center py-32 md:py-40">
-    <div class="animate-fade-in">
-      <span class="inline-block px-4 py-1.5 bg-white/10 text-white text-sm font-medium rounded-full mb-6 border border-white/30 backdrop-blur-sm uppercase tracking-wider">
-        Homestay Kenangan
-      </span>
-
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-6 max-w-4xl mx-auto">
-        Comfortable Family Homestay for Your Perfect Stay
-      </h1>
-
-      <p class="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-4 leading-relaxed">
-        Enjoy a clean, spacious and affordable homestay suitable for families, vacations and business trips.
-      </p>
-      <p class="text-sm md:text-base text-white/70 mb-10 uppercase tracking-wider">
-        Kemaman, Terengganu &nbsp;·&nbsp; Kuala Terengganu, Terengganu
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary text-lg px-8 py-4 shadow-lg shadow-black/20 hover:shadow-xl animate-float"
-          aria-label="Book now via WhatsApp"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-          Book via WhatsApp
-        </a>
-
-        <a
-          href="/gallery"
-          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border-2 border-white/40 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:shadow-lg active:scale-[0.97]"
-          aria-label="View gallery"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-          View Gallery
-        </a>
-      </div>
-    </div>
+  <div class="container-custom relative z-10 text-center py-32">
+    <h1
+      class="font-script text-white leading-none animate-fade-in text-[64px] sm:text-[90px] lg:text-[140px]"
+    >
+      Homestay Kenangan
+    </h1>
+    <p class="mt-6 text-xs sm:text-sm text-white uppercase tracking-[0.3em]">
+      Kemaman &nbsp;·&nbsp; Kuala Terengganu, Terengganu
+    </p>
   </div>
 
   <!-- Scroll Indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <a href="#about" aria-label="Scroll to about section" class="text-white/60 hover:text-white transition-colors">
+    <a href="#booking-search" aria-label="Scroll to booking search" class="text-white/60 hover:text-white transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="12" y1="5" x2="12" y2="19"/>
         <polyline points="19 12 12 19 5 12"/>

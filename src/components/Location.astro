@@ -36,10 +36,10 @@ const homestays = [
 ];
 ---
 
-<section id="location" class="section-padding bg-gray-50 dark:bg-gray-800/50" aria-label="Location">
+<section id="location" class="section-padding bg-cream" aria-label="Location">
   <div class="container-custom">
     <div class="text-center mb-12">
-      <span class="text-primary font-semibold text-sm tracking-wider uppercase">Location</span>
+      <p class="section-eyebrow">Location</p>
       <h2 class="section-title">Our Locations</h2>
       <p class="section-subtitle">
         Two convenient locations in Terengganu, each close to popular attractions and amenities.
@@ -49,7 +49,7 @@ const homestays = [
     <div class="grid lg:grid-cols-2 gap-8">
       {homestays.map((hs) => (
         <div class="space-y-6">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <h3 class="text-xl font-display font-semibold text-black flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
@@ -58,7 +58,7 @@ const homestays = [
           </h3>
 
           <!-- Map -->
-          <div class="rounded-2xl overflow-hidden shadow-soft h-[250px]">
+          <div class="overflow-hidden shadow-soft h-[250px] border border-gray-100">
             <iframe
               src={`https://www.google.com/maps?q=${hs.coords}&output=embed&z=17`}
               width="100%"
@@ -73,21 +73,21 @@ const homestays = [
           </div>
 
           <!-- Address & Nearby -->
-          <div class="card">
+          <div class="card bg-white border border-gray-100 p-6">
             <div class="flex items-start gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <div class="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </div>
               <div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">{hs.address}</p>
+                <p class="text-sm text-gray-600">{hs.address}</p>
                 <a
                   href={hs.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-primary hover:text-primary-600 text-sm font-medium mt-1 transition-colors"
+                  class="inline-flex items-center gap-1 text-primary hover:text-primary-700 text-sm font-bold uppercase tracking-wide mt-1 transition-colors"
                   aria-label={`Open ${hs.name} in Google Maps`}
                 >
                   Open in Google Maps
@@ -100,17 +100,17 @@ const homestays = [
               </div>
             </div>
 
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-3 text-sm">Nearby Attractions</h4>
+            <h4 class="font-display font-semibold text-black mb-3 text-sm">Nearby Attractions</h4>
             <div class="space-y-2">
               {hs.nearbyPlaces.map((place) => (
-                <div class="flex items-center justify-between p-2.5 rounded-xl bg-gray-50 dark:bg-gray-700/50 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors group" itemscope itemtype="https://schema.org/Place">
+                <div class="flex items-center justify-between p-2.5 border border-gray-100 hover:border-primary/40 hover:bg-primary/5 transition-colors group" itemscope itemtype="https://schema.org/Place">
                   <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform flex-shrink-0">
+                    <div class="w-8 h-8 bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
                       <span aria-hidden="true" class="text-lg">{place.emoji}</span>
                     </div>
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300" itemprop="name">{place.name}</span>
+                    <span class="text-sm font-medium text-gray-700" itemprop="name">{place.name}</span>
                   </div>
-                  <span class="text-xs font-semibold text-primary bg-primary/10 dark:bg-primary/20 px-2.5 py-1 rounded-full">{place.time}</span>
+                  <span class="text-xs font-bold text-white bg-primary px-2.5 py-1 uppercase tracking-wide">{place.time}</span>
                 </div>
               ))}
             </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Lato:wght@300;400;700;900&family=Lora:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,29 +10,29 @@
   }
 
   body {
-    @apply font-sans text-gray-800 bg-white dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300;
+    @apply font-sans text-gray-800 bg-white;
   }
 
   ::selection {
-    @apply bg-primary/20 text-primary-700 dark:text-primary-300;
+    @apply bg-primary/20 text-primary-700;
   }
 }
 
 @layer components {
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-full transition-all duration-300 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply inline-flex items-center justify-center gap-2 h-[42px] px-5 bg-primary text-white text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary font-semibold rounded-full transition-all duration-300 hover:bg-gray-50 hover:shadow-lg active:scale-[0.97] border-2 border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 h-[42px] px-5 bg-[#F7F7F7] text-[#333333] text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
 
   .btn-accent {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-gray-900 font-semibold rounded-full transition-all duration-300 hover:bg-yellow-400 hover:shadow-lg hover:shadow-accent/25 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 h-[42px] px-5 bg-accent text-black text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
 
   .section-padding {
@@ -40,15 +40,19 @@
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-soft p-6 transition-all duration-300 hover:shadow-lg;
+    @apply bg-white rounded-none shadow-none transition-all duration-300;
+  }
+
+  .section-eyebrow {
+    @apply text-lg font-normal text-gray-600 text-center mb-2;
   }
 
   .section-title {
-    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4;
+    @apply font-display text-3xl md:text-4xl lg:text-[44px] leading-tight font-semibold text-black text-center mb-4;
   }
 
   .section-subtitle {
-    @apply text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto;
+    @apply text-base text-gray-600 max-w-2xl mx-auto text-center;
   }
 }
 
@@ -62,8 +66,8 @@
   }
 
   .bg-grid {
-    background-image: linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0, 104, 56, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 104, 56, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
@@ -76,7 +80,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-700;
   }
 }
 
