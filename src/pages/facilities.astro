@@ -114,17 +114,13 @@ const facilities: Facility[] = [
     <!-- Facilities Grid -->
     <section class="section-padding bg-white dark:bg-gray-900" aria-label="Facilities list">
       <div class="container-custom">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-4">
           {facilities.map((facility) => (
-            <div class="card border border-gray-100 p-6 group hover:-translate-y-1 hover:border-primary/40 transition-all">
-              <div class="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
-                <span class="text-2xl leading-none" aria-hidden="true">{facility.emoji}</span>
-              </div>
-              <h3 class="font-display text-lg font-semibold text-black mb-2">
+            <div class="card border border-gray-100 py-5 px-3 flex flex-col items-center text-center group hover:-translate-y-1 hover:border-primary/40 transition-all">
+              <span class="text-2xl leading-none mb-2" aria-hidden="true">{facility.emoji}</span>
+              <h3 class="font-display text-sm font-semibold text-black">
                 {facility.title}
               </h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{facility.description}</p>
-              <p class="text-xs text-gray-500 dark:text-gray-500 leading-relaxed">{facility.details}</p>
             </div>
           ))}
         </div>
