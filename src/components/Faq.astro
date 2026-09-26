@@ -43,17 +43,16 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="section-padding bg-white" aria-label="Frequently asked questions">
-  <div class="container-custom">
-    <div class="text-center mb-12">
-      <p class="section-eyebrow">FAQ</p>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-subtitle">
-        Everything you need to know about staying with us.
-      </p>
-    </div>
+<div id="faq" class="w-full" aria-label="Frequently asked questions">
+  <div class="text-center mb-8">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-subtitle">
+      Everything you need to know about staying with us.
+    </p>
+  </div>
 
-    <div class="max-w-3xl mx-auto space-y-3" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="space-y-3" itemscope itemtype="https://schema.org/FAQPage">
       {faqs.map((faq, index) => (
         <details
           class="group card border border-gray-100 overflow-hidden"
@@ -90,5 +89,4 @@ const faqs = [
         </details>
       ))}
     </div>
-  </div>
-</section>
+</div>
