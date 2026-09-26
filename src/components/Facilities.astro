@@ -98,22 +98,17 @@ const facilities: Facility[] = [
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-4">
       {facilities.map((facility) => (
         <div
-          class="group card border border-gray-100 p-6 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-default"
+          class="group card border border-gray-100 py-5 px-3 flex flex-col items-center text-center hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-default"
           itemscope
           itemtype="https://schema.org/LocationFeatureSpecification"
         >
-          <div class="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-all duration-300">
-            <span class="text-2xl leading-none" aria-hidden="true">{facility.emoji}</span>
-          </div>
-          <h3 class="font-display text-lg font-semibold text-black mb-2" itemprop="name">
+          <span class="text-2xl leading-none mb-2" aria-hidden="true">{facility.emoji}</span>
+          <h3 class="font-display text-sm font-semibold text-black" itemprop="name">
             {facility.title}
           </h3>
-          <p class="text-sm text-gray-600 leading-relaxed" itemprop="description">
-            {facility.description}
-          </p>
         </div>
       ))}
     </div>
