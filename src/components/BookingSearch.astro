@@ -7,7 +7,11 @@ const WHATSAPP_NUMBER = '60199144505';
     <p class="section-eyebrow">Plan Your Stay</p>
     <h2 class="section-title !mb-8">Search Available Dates</h2>
 
-    <form id="booking-search-form" class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+    <form
+      id="booking-search-form"
+      data-whatsapp={WHATSAPP_NUMBER}
+      class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-end"
+    >
       <div class="text-left">
         <label for="check-in" class="block text-[13px] font-bold uppercase tracking-wide text-gray-700 mb-2">Check-in</label>
         <input
@@ -37,10 +41,10 @@ const WHATSAPP_NUMBER = '60199144505';
   </div>
 </section>
 
-<script define:vars={{ whatsappNumber: WHATSAPP_NUMBER }}>
-  const form = document.getElementById('booking-search-form');
-  const checkIn = document.getElementById('check-in');
-  const checkOut = document.getElementById('check-out');
+<script>
+  const form = document.getElementById('booking-search-form') as HTMLFormElement | null;
+  const checkIn = document.getElementById('check-in') as HTMLInputElement | null;
+  const checkOut = document.getElementById('check-out') as HTMLInputElement | null;
 
   const today = new Date().toISOString().split('T')[0];
   if (checkIn) checkIn.min = today;
@@ -56,9 +60,10 @@ const WHATSAPP_NUMBER = '60199144505';
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!checkIn?.value || !checkOut?.value) return;
+    const number = form.dataset.whatsapp || '';
     const message = encodeURIComponent(
       `Hi, I'd like to check availability.\n\nCheck-in: ${checkIn.value}\nCheck-out: ${checkOut.value}`
     );
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank', 'noopener');
+    window.open(`https://wa.me/${number}?text=${message}`, '_blank', 'noopener');
   });
 </script>
