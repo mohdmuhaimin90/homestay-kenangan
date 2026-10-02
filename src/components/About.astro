@@ -50,7 +50,7 @@ const homestays = [
             <picture>
               <source srcset={`${hs.imageWebp.replace(/\.webp$/, "-640.webp")} 640w, ${hs.imageWebp} 1024w, ${hs.imageWebp.replace(/\.webp$/, "-1280.webp")} 1280w`} sizes="(max-width: 768px) 100vw, 50vw" type="image/webp" />
               <img
-                src={hs.image}
+                src={hs.imageWebp}
                 alt={hs.name}
                 width={hs.w}
                 height={hs.h}
