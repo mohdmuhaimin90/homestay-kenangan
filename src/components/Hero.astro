@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 // Hero background: one 1280w WebP, preloaded above the fold.
 // Served as a plain <img> so the preload URL and the element URL match exactly.
 const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
@@ -45,10 +46,7 @@ const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
   <!-- Scroll Indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
     <a href="#booking-search" aria-label="Scroll to booking search" class="text-white/60 hover:text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="12" y1="5" x2="12" y2="19"/>
-        <polyline points="19 12 12 19 5 12"/>
-      </svg>
+      <Icon name="arrow-down" size={28} strokeWidth={2} />
       <span class="sr-only">Scroll down</span>
     </a>
   </div>

@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const highlights = [
   'Spacious Rooms',
   'Clean Environment',
@@ -69,10 +70,7 @@ const homestays = [
               class="inline-flex items-center gap-1.5 text-primary hover:text-primary-700 text-sm font-bold uppercase tracking-wide transition-colors"
               aria-label={`View ${hs.name} on Google Maps`}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
+              <Icon name="map" size={16} strokeWidth={2} />
               View Location
             </a>
           </div>
@@ -85,9 +83,7 @@ const homestays = [
       {highlights.map((item) => (
         <div class="flex items-center gap-3 p-4 border border-gray-100 hover:border-primary/40 transition-colors group">
           <div class="w-10 h-10 bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
+            <Icon name="check" size={18} strokeWidth={2} />
           </div>
           <span class="text-sm font-medium text-gray-700">{item}</span>
         </div>
