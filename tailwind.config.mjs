@@ -25,8 +25,8 @@ export default {
         forest: '#4A0012',
       },
       fontFamily: {
-        sans: ['Lato', 'system-ui', 'sans-serif'],
-        display: ['Lora', 'Georgia', 'serif'],
+        sans: ['Lato', 'Lato Fallback', 'system-ui', 'sans-serif'],
+        display: ['Lora', 'Lora Fallback', 'Georgia', 'serif'],
         script: ['Hurricane', 'cursive'],
       },
       animation: {
