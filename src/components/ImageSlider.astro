@@ -52,12 +52,13 @@ const toWebp = (src: string) => webpAt(src, 'full');
         <picture>
           <source srcset={webpSrcset(img.src)} sizes="(max-width: 640px) 78vw, 480px" type="image/webp" />
           <img
-            src={img.src}
+            src={toWebp(img.src)}
             alt={img.alt}
             width={img.w}
             height={img.h}
             class="w-full h-[220px] sm:h-[260px] object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : undefined}
             decoding="async"
           />
         </picture>
