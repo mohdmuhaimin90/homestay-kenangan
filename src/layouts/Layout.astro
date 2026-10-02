@@ -119,5 +119,108 @@ const jsonLd = {
   </head>
   <body class="antialiased">
     <slot />
+    <script is:inline>
+  (() => {
+    document.querySelectorAll('[data-slider-id]').forEach((sliderEl) => {
+      const sliderId = sliderEl.dataset.sliderId;
+      const location = sliderEl.dataset.location;
+      const images = JSON.parse(sliderEl.dataset.images || '[]');
+
+      const track = sliderEl.querySelector('[data-slider-track]');
+      const prevBtn = sliderEl.querySelector('[data-slider-prev]');
+      const nextBtn = sliderEl.querySelector('[data-slider-next]');
+
+      const lightboxId = sliderEl.dataset.lightboxId;
+      const lightbox = document.getElementById(lightboxId);
+      const lbSource = lightbox.querySelector('[data-lightbox-source]');
+      const lbImage = lightbox.querySelector('[data-lightbox-image]');
+      const lbCaption = lightbox.querySelector('[data-lightbox-caption]');
+      const lbCounter = lightbox.querySelector('[data-lightbox-counter]');
+      const lbPrev = lightbox.querySelector('[data-lightbox-prev]');
+      const lbNext = lightbox.querySelector('[data-lightbox-next]');
+      const lbClose = lightbox.querySelector('[data-lightbox-close]');
+
+      const slides = Array.from(track.querySelectorAll('[data-open-lightbox]'));
+      let current = 0;
+
+      const toWebp = (src) => src.replace(/\.(jpe?g|png)$/i, '.webp');  // 1024w full variant
+
+      function scrollByCard(dir) {
+        const item = track.querySelector('[data-open-lightbox]');
+        const width = item ? item.getBoundingClientRect().width + 16 : 420;
+        track.scrollBy({ left: dir * width, behavior: 'smooth' });
+      }
+
+      prevBtn.addEventListener('click', () => scrollByCard(-1));
+      nextBtn.addEventListener('click', () => scrollByCard(1));
+
+      function renderSlide() {
+        if (!lbImage || !images[current]) return;
+        if (lbSource) lbSource.srcset = toWebp(images[current].src);
+        lbImage.src = images[current].src;
+        lbImage.alt = images[current].alt;
+        if (lbCaption) lbCaption.textContent = images[current].alt;
+        if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + images.length;
+      }
+
+      function openLightbox(index) {
+        current = index;
+        renderSlide();
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+
+      slides.forEach((slide, i) => {
+        slide.addEventListener('click', () => {
+          const idx = parseInt(slide.getAttribute('data-open-lightbox'), 10) || i;
+          openLightbox(idx);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+
+      function go(delta) {
+        current = (current + delta + images.length) % images.length;
+        renderSlide();
+      }
+
+      lbPrev.addEventListener('click', (e) => { e.stopPropagation(); go(-1); });
+      lbNext.addEventListener('click', (e) => { e.stopPropagation(); go(1); });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('hidden')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') go(-1);
+        if (e.key === 'ArrowRight') go(1);
+      });
+
+      let touchStartX = 0;
+      let touchStartY = 0;
+      lbImage.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      lbImage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) go(1);
+          else go(-1);
+        }
+      }, { passive: true });
+    });
+  })();
+</script>
   </body>
 </html>

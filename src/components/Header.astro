@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const WHATSAPP_NUMBER = '60199144505';
 const WHATSAPP_MESSAGE = encodeURIComponent("Hi I'm interested in booking your homestay.");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
@@ -49,7 +50,7 @@ const navLinks = [
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center h-[42px] px-5 border border-white text-white text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-white hover:text-black"
-        aria-label="Book now via WhatsApp"
+        aria-label="Book Now via WhatsApp"
       >
         Book Now
       </a>
@@ -62,15 +63,8 @@ const navLinks = [
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-      <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+      <Icon name="menu" size={24} strokeWidth={2} />
+      <Icon name="x" size={24} class="hidden" strokeWidth={2} />
     </button>
   </nav>
 
@@ -94,7 +88,7 @@ const navLinks = [
         target="_blank"
         rel="noopener noreferrer"
         class="mt-4 w-full inline-flex items-center justify-center h-[42px] px-5 border border-white text-white text-[13px] font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-white hover:text-black"
-        aria-label="Book now via WhatsApp"
+        aria-label="Book Now via WhatsApp"
       >
         Book Now
       </a>

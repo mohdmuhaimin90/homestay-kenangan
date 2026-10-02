@@ -15,9 +15,9 @@ export default defineConfig({
   compressHTML: true,
   build: {
     assets: '_assets',
-    // Inline the stylesheet into each page. The single Tailwind bundle is small
-    // enough that a separate blocking request costs more than it saves.
-    inlineStylesheets: 'always',
+    // Keep the stylesheet external. Inlining pushed the document to ~18 KB and
+    // delayed first byte past 500 ms, which cost more than the extra request.
+    inlineStylesheets: 'auto',
   },
   image: {
     service: { entrypoint: 'astro/assets/services/noop' },
