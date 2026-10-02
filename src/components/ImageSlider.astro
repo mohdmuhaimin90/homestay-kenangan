@@ -3,25 +3,34 @@ interface GalleryImage {
   src: string;
   alt: string;
   cat?: string;
+  w?: number;
+  h?: number;
 }
 
 interface Props {
   location: string;
+  sliderKey?: string;
   images: GalleryImage[];
   slideClass?: string;
 }
 
-const { location, images, slideClass } = Astro.props;
-const id = location.toLowerCase().replace(/\s+/g, '-');
+const { location, sliderKey, images, slideClass } = Astro.props;
+// Keyed by the folder name so spaces in the label cannot break the id/anchor.
+const id = sliderKey || location.toLowerCase().replace(/\s+/g, '-');
 const sliderId = `slider-${id}`;
 const lightboxId = `lightbox-${id}`;
 const defaultSlideClass = 'w-[78vw] sm:w-[420px] md:w-[480px]';
 const itemClass = slideClass || defaultSlideClass;
 const total = images.length;
-const sliderIdJson = JSON.stringify(sliderId);
-const lightboxIdJson = JSON.stringify(lightboxId);
-const locationJson = JSON.stringify(location);
 const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.alt })));
+
+// WebP sibling paths: "/a/b.jpg" -> "/a/b.webp", "/a/b-640.webp", "/a/b-1280.webp".
+// Width descriptors let the browser pick the smallest file that stays sharp.
+const webpAt = (src: string, w: number | 'full') =>
+  src.replace(/\.(jpe?g|png)$/i, w === 'full' ? '.webp' : `-${w}.webp`);
+const webpSrcset = (src: string) =>
+  `${webpAt(src, 640)} 640w, ${webpAt(src, 1024)} 1024w, ${webpAt(src, 1280)} 1280w`;
+const toWebp = (src: string) => webpAt(src, 'full');
 ---
 
 <div class="relative" data-slider={sliderId} data-slider-id={sliderId} data-lightbox-id={lightboxId} data-location={location} data-images={imagesJson}>
@@ -40,12 +49,18 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
         class={`${itemClass} snap-center shrink-0 group block relative overflow-hidden shadow-soft hover:shadow-hover transition-all duration-300 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
         aria-label={`View ${img.alt} (${i + 1} of ${total})`}
       >
-        <img
-          src={img.src}
-          alt={img.alt}
-          class="w-full h-[220px] sm:h-[260px] object-cover group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
+        <picture>
+          <source srcset={webpSrcset(img.src)} sizes="(max-width: 640px) 78vw, 480px" type="image/webp" />
+          <img
+            src={img.src}
+            alt={img.alt}
+            width={img.w}
+            height={img.h}
+            class="w-full h-[220px] sm:h-[260px] object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
         {img.cat && (
           <span class="absolute top-3 left-3 px-3 py-1 bg-black/70 text-white text-xs font-medium uppercase tracking-wide backdrop-blur-sm">
             {img.cat}
@@ -130,14 +145,17 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
   </button>
 
   <div class="relative z-[71] w-full h-full flex flex-col items-center justify-center px-14 md:px-20" data-lightbox-stage>
-    <img
-      src=""
-      alt=""
-      class="max-h-[80vh] max-w-full w-auto shadow-2xl select-none"
-      draggable="false"
-      data-lightbox-image
-      style="touch-action: pan-y;"
-    />
+    <picture>
+      <source srcset="" type="image/webp" data-lightbox-source />
+      <img
+        src=""
+        alt=""
+        class="max-h-[80vh] max-w-full w-auto shadow-2xl select-none"
+        draggable="false"
+        data-lightbox-image
+        style="touch-action: pan-y;"
+      />
+    </picture>
     <p class="text-white/70 text-center mt-5 text-sm" data-lightbox-caption></p>
     <p class="text-white/40 text-center mt-2 text-xs" data-lightbox-counter></p>
   </div>
@@ -156,6 +174,7 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
 
       const lightboxId = sliderEl.dataset.lightboxId;
       const lightbox = document.getElementById(lightboxId);
+      const lbSource = lightbox.querySelector('[data-lightbox-source]');
       const lbImage = lightbox.querySelector('[data-lightbox-image]');
       const lbCaption = lightbox.querySelector('[data-lightbox-caption]');
       const lbCounter = lightbox.querySelector('[data-lightbox-counter]');
@@ -165,6 +184,8 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
 
       const slides = Array.from(track.querySelectorAll('[data-open-lightbox]'));
       let current = 0;
+
+      const toWebp = (src) => src.replace(/\.(jpe?g|png)$/i, '.webp');  // 1024w full variant
 
       function scrollByCard(dir) {
         const item = track.querySelector('[data-open-lightbox]');
@@ -177,6 +198,7 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
 
       function renderSlide() {
         if (!lbImage || !images[current]) return;
+        if (lbSource) lbSource.srcset = toWebp(images[current].src);
         lbImage.src = images[current].src;
         lbImage.alt = images[current].alt;
         if (lbCaption) lbCaption.textContent = images[current].alt;

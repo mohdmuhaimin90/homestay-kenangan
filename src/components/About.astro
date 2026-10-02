@@ -14,12 +14,18 @@ const homestays = [
     name: 'Homestay Kenangan Kemaman',
     description: 'A cozy homestay located in the heart of Kemaman, Terengganu. Features 3 bedrooms, 1 bathroom, and 1 toilet. Perfect for families.',
     image: '/images/kemaman/Living Hall.jpg',
+    imageWebp: '/images/kemaman/Living Hall.webp',
+    w: 960,
+    h: 1280,
     mapUrl: 'https://maps.app.goo.gl/KyBmg1iwgqLiSsha9',
   },
   {
     name: 'Homestay Kenangan Kuala Terengganu',
     description: 'A spacious homestay in Kuala Terengganu with 4 bedrooms and 4 bathrooms. Close to local attractions, restaurants, and beaches. Ideal for large families and groups.',
     image: '/images/kuala-terengganu/living room 1.jpg',
+    imageWebp: '/images/kuala-terengganu/living room 1.webp',
+    w: 1280,
+    h: 960,
     mapUrl: 'https://maps.app.goo.gl/SCBDByiRjyYQefny6',
   },
 ];
@@ -40,12 +46,18 @@ const homestays = [
       {homestays.map((hs) => (
         <div class="card group border border-gray-100 hover:border-primary/40 hover:-translate-y-1 overflow-hidden">
           <div class="aspect-[16/10] overflow-hidden">
-            <img
-              src={hs.image}
-              alt={hs.name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
+            <picture>
+              <source srcset={`${hs.imageWebp.replace(/\.webp$/, "-640.webp")} 640w, ${hs.imageWebp} 1024w, ${hs.imageWebp.replace(/\.webp$/, "-1280.webp")} 1280w`} sizes="(max-width: 768px) 100vw, 50vw" type="image/webp" />
+              <img
+                src={hs.image}
+                alt={hs.name}
+                width={hs.w}
+                height={hs.h}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div class="p-6">
             <h3 class="font-display text-xl font-semibold text-black mb-2">{hs.name}</h3>
