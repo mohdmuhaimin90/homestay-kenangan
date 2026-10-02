@@ -3,6 +3,7 @@
  * Generate responsive WebP variants + an optimized LCP hero image.
  *
  * Outputs, for each source in public/images:
+ *   <name>-320.webp     320w  quality 62   (home-page slider thumbnails)
  *   <name>.webp        1024w  quality 62   (default gallery variant)
  *   <name>-640.webp     640w  quality 62   (mobile)
  *   <name>-1280.webp   1280w  quality 62   (wide screens)
@@ -18,7 +19,9 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..', 'public', 'images');
 const Q = 62;
-const WIDTHS = [640, 1024, 1280];
+// 320w covers the home-page slider thumbnails (321x428 CSS box). Without it the
+// browser had to take the 640w file for a 321px slot, roughly tripling bytes.
+const WIDTHS = [320, 640, 1024, 1280];
 
 function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -48,7 +51,7 @@ async function variant(src, dest, width, quality) {
 
   for (const f of files) {
     const base = f.replace(/\.(jpe?g|png)$/i, '');
-    if (/-640$|-1024$|-1280$|-hero$/i.test(base)) continue; // skip our own outputs
+    if (/-320$|-640$|-1024$|-1280$|-hero$/i.test(base)) continue; // skip our own outputs
     before += fs.statSync(f).size;
     for (const w of WIDTHS) {
       const dest = `${base}-${w}.webp`;
@@ -61,11 +64,15 @@ async function variant(src, dest, width, quality) {
     n++;
   }
 
-  // Hero: sharper, JPEG fallback included
+  // Hero: sharper than gallery, with a width set so the browser does not pull a
+  // 1280w file into an 800px-wide slot on a laptop. JPEG fallback included.
   const heroSrc = path.join(ROOT, 'kuala-terengganu', 'exterior.jpg');
   const heroBase = path.join(ROOT, 'kuala-terengganu', 'exterior-hero');
-  await sharp(heroSrc).rotate().resize({ width: 1280 }).webp({ quality: 72, effort: 6 }).toFile(`${heroBase}.webp`);
-  await sharp(heroSrc).rotate().resize({ width: 1280 }).jpeg({ quality: 72, mozjpeg: true }).toFile(`${heroBase}.jpg`);
+  await sharp(heroSrc).rotate().resize({ width: 1024 }).webp({ quality: 68, effort: 6 }).toFile(`${heroBase}.webp`);
+  for (const w of [640, 1280]) {
+    await sharp(heroSrc).rotate().resize({ width: w }).webp({ quality: 66, effort: 6 }).toFile(`${heroBase}-${w}.webp`);
+  }
+  await sharp(heroSrc).rotate().resize({ width: 1024 }).jpeg({ quality: 70, mozjpeg: true }).toFile(`${heroBase}.jpg`);
 
   console.log(`${n} responsive webp variants written.`);
   console.log(`gallery default (1024w) total: ${(before / 1024).toFixed(0)} KB jpg/png -> ${(after / 1024).toFixed(0)} KB webp`);

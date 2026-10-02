@@ -30,7 +30,7 @@ const imagesJson = JSON.stringify(images.map((img) => ({ src: img.src, alt: img.
 const webpAt = (src: string, w: number | 'full') =>
   src.replace(/\.(jpe?g|png)$/i, w === 'full' ? '.webp' : `-${w}.webp`);
 const webpSrcset = (src: string) =>
-  `${webpAt(src, 640)} 640w, ${webpAt(src, 1024)} 1024w, ${webpAt(src, 1280)} 1280w`;
+  `${webpAt(src, 320)} 320w, ${webpAt(src, 640)} 640w, ${webpAt(src, 1024)} 1024w, ${webpAt(src, 1280)} 1280w`;
 const toWebp = (src: string) => webpAt(src, 'full');
 ---
 
@@ -51,7 +51,7 @@ const toWebp = (src: string) => webpAt(src, 'full');
         aria-label={`View ${img.alt} (${i + 1} of ${total})`}
       >
         <picture>
-          <source srcset={webpSrcset(img.src)} sizes="(max-width: 640px) 78vw, 480px" type="image/webp" />
+          <source srcset={webpSrcset(img.src)} sizes="(max-width: 640px) 78vw, (max-width: 768px) 420px, 480px" type="image/webp" />
           <img
             src={toWebp(img.src)}
             alt={img.alt}
