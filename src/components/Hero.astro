@@ -5,9 +5,6 @@ const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
-  <!-- Background image. Plain <img> (not <picture>) so the URL in the
-       document head's preload hint matches exactly — no duplicate download.
-       The preload link itself lives in Layout.astro's <head>. -->
   <div class="absolute inset-0">
     <img
       src={heroWebp}
@@ -24,9 +21,6 @@ const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
   <!-- Content -->
   <div class="container-custom relative z-10 text-center py-32">
     <h1 class="mx-auto animate-fade-in">
-      <!-- Logo is the LCP element. A <picture> with explicit sizes lets the
-           browser pick 640w on phones and 1024w on desktop/retina; the <img src>
-           matches the head preload so the download starts at parse time. -->
       <picture>
         <source
           srcset="/images/logo-640.webp 640w, /images/logo-1024.webp 1024w"

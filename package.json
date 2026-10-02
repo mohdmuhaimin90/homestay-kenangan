@@ -5,9 +5,10 @@
   "description": "Premium family homestay website built with Astro and Tailwind CSS",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/strip-comments.mjs",
     "preview": "astro preview",
-    "build:images": "node scripts/gen-images.cjs"
+    "build:images": "node scripts/gen-images.cjs",
+    "verify": "node scripts/strip-comments.mjs && python3 scripts/check-assets.py"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.0",
