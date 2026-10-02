@@ -3,12 +3,16 @@ import Icon from './Icon.astro';
 // Hero background: one 1280w WebP, preloaded above the fold.
 // Served as a plain <img> so the preload URL and the element URL match exactly.
 const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
+const heroWebp640 = '/images/kuala-terengganu/exterior-hero-640.webp';
+const heroWebp1280 = '/images/kuala-terengganu/exterior-hero-1280.webp';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
   <div class="absolute inset-0">
     <img
       src={heroWebp}
+      srcset={`${heroWebp640} 640w, ${heroWebp} 1024w, ${heroWebp1280} 1280w`}
+      sizes="100vw"
       alt="Exterior of Homestay Kenangan Kuala Terengganu"
       width="1280"
       height="1707"

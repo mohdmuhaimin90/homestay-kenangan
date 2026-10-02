@@ -71,7 +71,7 @@ keep = set(KEEP_ALWAYS)
 for r in refs:
     keep.add(r)
     base = re.sub(r'\.(jpe?g|png|webp)$', '', r)
-    for suffix in ('', '-640', '-1024', '-1280'):
+    for suffix in ('', '-320', '-640', '-1024', '-1280'):
         keep.add(f'{base}{suffix}.webp')
     keep.add(f'{base}-hero.webp')
     keep.add(f'{base}-hero.jpg')
