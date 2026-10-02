@@ -10,6 +10,8 @@ export interface Props {
   noindex?: boolean;
   /** Above-the-fold image to preload (absolute path). Emits <link rel="preload"> in <head>. */
   preloadImage?: string;
+  preloadSrcset?: string;
+  preloadSizes?: string;
 }
 
 const {
@@ -20,6 +22,8 @@ const {
   ogType = 'website',
   noindex = false,
   preloadImage,
+  preloadSrcset,
+  preloadSizes,
 } = Astro.props;
 
 const siteName = 'Homestay Kenangan';
@@ -78,7 +82,17 @@ const jsonLd = {
     <link rel="canonical" href={canonical} />
 
     <!-- Above-the-fold image (LCP) — start the request before CSS/JS parse -->
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" fetchpriority="high" />}
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        imagesrcset={preloadSrcset}
+        imagesizes={preloadSizes}
+        type="image/webp"
+        fetchpriority="high"
+      />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
