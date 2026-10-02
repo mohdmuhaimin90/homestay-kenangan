@@ -112,8 +112,9 @@ const facilities: Facility[] = [
     </section>
 
     <!-- Facilities Grid -->
-    <section class="section-padding bg-white dark:bg-gray-900" aria-label="Facilities list">
+    <section class="section-padding bg-white dark:bg-gray-900" aria-labelledby="facilities-heading">
       <div class="container-custom">
+        <h2 id="facilities-heading" class="sr-only">Amenities and Facilities</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-4">
           {facilities.map((facility) => (
             <div class="card border border-gray-100 py-5 px-3 flex flex-col items-center text-center group hover:-translate-y-1 hover:border-primary/40 transition-all">
