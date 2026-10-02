@@ -1,0 +1,34 @@
+# llms.txt — Homestay Kenangan
+# Spec: https://llmstxt.org/
+
+> Homestay Kenangan runs two family homestays in Terengganu, Malaysia: one in
+> Kemaman (3 bedrooms) and one in Kuala Terengganu (4 bedrooms, 4 bathrooms).
+> Both are self check-in, air conditioned, with full kitchen, free parking and
+> WiFi. Bookings are confirmed on WhatsApp at +60 19-914 4505.
+
+## Locations
+
+- [Kemaman homestay](https://homestay-kenangan.vercel.app/#about): 3 bedrooms, 1 bathroom, 1 toilet. Suited to families of up to 8. Map: https://maps.app.goo.gl/KyBmg1iwgqLiSsha9
+- [Kuala Terengganu homestay](https://homestay-kenangan.vercel.app/#about): 4 bedrooms, 4 bathrooms. Suited to large families and groups. Map: https://maps.app.goo.gl/SCBDByiRjyYQefny6
+
+## Pages
+
+- [Home](https://homestay-kenangan.vercel.app/): Overview, booking call to action, gallery highlights.
+- [About Us](https://homestay-kenangan.vercel.app/about): Story, both locations, why guests choose us.
+- [Gallery](https://homestay-kenangan.vercel.app/gallery): Room and facility photos for both locations.
+- [Facilities](https://homestay-kenangan.vercel.app/facilities): Amenities list — kitchen, WiFi, TV, parking, air conditioning.
+- [FAQ](https://homestay-kenangan.vercel.app/faq): Check-in times, house rules, amenities, booking questions.
+- [Contact](https://homestay-kenangan.vercel.app/contact): WhatsApp, phone, email and price range.
+
+## Facts
+
+- Booking channel: WhatsApp +60 19-914 4505 (no online payment on this site).
+- Email: kenangan.homestay@gmail.com
+- Region: Terengganu, Malaysia. Nearest attractions include Batu Buruk Beach, Crystal Mosque, Pasar Payang (Kuala Terengganu) and Kemaman beaches.
+- Currency: MYR. Prices are quoted per night on the contact page.
+- Languages: English (site), Malay and English (guest communication).
+
+## Optional
+
+- [Sitemap](https://homestay-kenangan.vercel.app/sitemap-index.xml)
+- [Robots](https://homestay-kenangan.vercel.app/robots.txt)

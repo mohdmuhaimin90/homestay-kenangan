@@ -4,6 +4,9 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://homestay-kenangan.vercel.app',
+  // trailingSlash 'always' makes the build emit /about -> redirect to /about/,
+  // matching the canonical + sitemap URLs the sitemap plugin produces.
+  trailingSlash: 'always',
   integrations: [
     tailwind(),
     sitemap(),

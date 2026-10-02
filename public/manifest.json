@@ -1,8 +1,9 @@
-﻿{
+{
   "name": "Homestay Kenangan",
   "short_name": "Homestay Kenangan",
-  "description": "Clean, comfortable and affordable family homestays in Kemaman and Kuala Terengganu.",
+  "description": "Clean, comfortable and affordable family homestays in Kemaman and Kuala Terengganu, Terengganu.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#800020",
@@ -16,6 +17,12 @@
       "src": "/favicon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

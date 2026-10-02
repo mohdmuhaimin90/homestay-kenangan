@@ -1,15 +1,22 @@
 ---
-const heroImage = '/images/kuala-terengganu/exterior.jpg';
+// Hero background: one 1280w WebP, preloaded above the fold.
+// Served as a plain <img> so the preload URL and the element URL match exactly.
+const heroWebp = '/images/kuala-terengganu/exterior-hero.webp';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Hero section">
-  <!-- Background Image -->
+  <!-- Background image. Plain <img> (not <picture>) so the URL in the
+       document head's preload hint matches exactly — no duplicate download.
+       The preload link itself lives in Layout.astro's <head>. -->
   <div class="absolute inset-0">
     <img
-      src={heroImage}
+      src={heroWebp}
       alt="Exterior of Homestay Kenangan Kuala Terengganu"
+      width="1280"
+      height="1707"
       class="w-full h-full object-cover"
       fetchpriority="high"
+      decoding="async"
     />
     <div class="absolute inset-0 bg-[rgba(10,10,10,0.3)]"></div>
   </div>
@@ -17,12 +24,24 @@ const heroImage = '/images/kuala-terengganu/exterior.jpg';
   <!-- Content -->
   <div class="container-custom relative z-10 text-center py-32">
     <h1 class="mx-auto animate-fade-in">
-      <img
-        src="/images/logo.png"
-        alt="Homestay Kenangan"
-        class="w-full max-w-[560px] sm:max-w-[680px] lg:max-w-[860px] h-auto mx-auto"
-        fetchpriority="high"
-      />
+      <!-- Logo is the LCP element. A <picture> with explicit sizes lets the
+           browser pick 640w on phones and 1024w on desktop/retina; the <img src>
+           matches the head preload so the download starts at parse time. -->
+      <picture>
+        <source
+          srcset="/images/logo-640.webp 640w, /images/logo-1024.webp 1024w"
+          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 680px, 860px"
+          type="image/webp"
+        />
+        <img
+          src="/images/logo-1024.webp"
+          alt="Homestay Kenangan"
+          width="1200"
+          height="350"
+          class="w-full max-w-[560px] sm:max-w-[680px] lg:max-w-[860px] h-auto mx-auto"
+          fetchpriority="high"
+        />
+      </picture>
     </h1>
     <p class="mt-8 text-xs sm:text-sm text-white uppercase tracking-[0.3em]">
       Kemaman &nbsp;·&nbsp; Kuala Terengganu, Terengganu

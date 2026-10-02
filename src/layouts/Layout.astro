@@ -7,35 +7,59 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  noindex?: boolean;
+  /** Above-the-fold image to preload (absolute path). Emits <link rel="preload"> in <head>. */
+  preloadImage?: string;
 }
 
 const {
   title,
   description,
-  canonical = 'https://homestay-kenangan.vercel.app',
+  canonical = 'https://homestay-kenangan.vercel.app/',
   ogImage = '/images/kuala-terengganu/exterior.jpg',
   ogType = 'website',
+  noindex = false,
+  preloadImage,
 } = Astro.props;
 
 const siteName = 'Homestay Kenangan';
 const currentUrl = canonical;
-
 const siteOrigin = new URL(canonical).origin;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteOrigin}${ogImage}`;
 
+// Google Search Console verification token. Set PUBLIC_GSC_VERIFICATION in Vercel
+// env to emit <meta name="google-site-verification">. Empty = tag omitted.
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Brand',
+  '@type': 'LodgingBusiness',
+  '@id': `${siteOrigin}/#business`,
   name: 'Homestay Kenangan',
   description:
-    'Clean, comfortable and affordable homestay with two locations in Kemaman and Kuala Terengganu. Perfect for families and travelers.',
-  url: currentUrl,
+    'Clean, comfortable and affordable family homestay with two locations in Kemaman and Kuala Terengganu, Terengganu, Malaysia.',
+  url: siteOrigin,
   telephone: '+60199144505',
   email: 'kenangan.homestay@gmail.com',
-  image: 'https://homestay-kenangan.vercel.app/images/kuala-terengganu/living%20room%201.jpg',
-  numberOfProducts: 2,
-  brand: 'Homestay Kenangan',
-  logo: 'https://homestay-kenangan.vercel.app/images/logo.png',
+  image: `${siteOrigin}/images/kuala-terengganu/exterior.jpg`,
+  logo: `${siteOrigin}/images/logo.png`,
+  priceRange: 'RM',
+  currenciesAccepted: 'MYR',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kemaman & Kuala Terengganu',
+    addressRegion: 'Terengganu',
+    addressCountry: 'MY',
+  },
+  amenityFeature: [
+    'Free Parking',
+    'Air Conditioning',
+    'Full Kitchen',
+    'High-speed WiFi',
+    'Smart TV',
+  ].map((n) => ({ '@type': 'LocationFeatureSpecification', name: n, value: true })),
+  numberOfRooms: 7,
+  sameAs: ['https://maps.app.goo.gl/KyBmg1iwgqLiSsha9', 'https://maps.app.goo.gl/SCBDByiRjyYQefny6'],
 };
 ---
 
@@ -45,12 +69,16 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#212121" />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow" />}
+    <meta name="theme-color" content="#800020" />
     <meta name="color-scheme" content="light" />
+    {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
 
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
+
+    <!-- Above-the-fold image (LCP) — start the request before CSS/JS parse -->
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" fetchpriority="high" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
@@ -70,27 +98,18 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Hurricane&family=Lato:wght@300;400;700;900&family=Lora:wght@400;500;600;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Hurricane&family=Lato:wght@300;400;700;900&family=Lora:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- Sitemap discovery -->
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- Fonts (self-hosted, no render-blocking third-party request) -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/S6uyw4BMUTPHjx4wXg.woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
