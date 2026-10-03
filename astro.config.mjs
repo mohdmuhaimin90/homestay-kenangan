@@ -9,7 +9,14 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     tailwind(),
-    sitemap(),
+    // Stamp lastmod so crawlers can tell which pages changed. Static hosts have
+    // no per-file mtime, so the build date is the honest signal: every deploy
+    // ships the current content.
+    sitemap({
+      serialize(item) {
+        return { ...item, lastmod: new Date().toISOString() };
+      },
+    }),
   ],
   output: 'static',
   compressHTML: true,
