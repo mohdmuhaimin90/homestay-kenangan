@@ -26,6 +26,10 @@ const heroWebp1280 = '/images/kuala-terengganu/exterior-hero-1280.webp';
   <!-- Content -->
   <div class="container-custom relative z-10 text-center py-32">
     <h1 class="mx-auto">
+      <!-- The logo image carries the branding, but an H1 with no text content
+           gives crawlers nothing to read, so keep the heading text here and
+           let it stay visually hidden. -->
+      <span class="sr-only">Homestay Kenangan, family homestay in Kemaman and Kuala Terengganu</span>
       <picture>
         <source
           srcset="/images/logo-640.webp 640w, /images/logo-1024.webp 1024w"

@@ -27,8 +27,18 @@ const {
 } = Astro.props;
 
 const siteName = 'Homestay Kenangan';
-const currentUrl = canonical;
-const siteOrigin = new URL(canonical).origin;
+// The site serves every route with a trailing slash (astro `trailingSlash:
+// 'always'` + vercel `trailingSlash: true`), so a canonical that omits the
+// slash names a URL that 308-redirects. Search Console reports those as "page
+// with redirect" and drops the indexing signal, so normalise here instead of
+// trusting every page to spell its own canonical correctly.
+const canonicalUrl = new URL(canonical);
+if (!canonicalUrl.pathname.endsWith('/')) {
+  canonicalUrl.pathname = `${canonicalUrl.pathname}/`;
+}
+const canonicalHref = canonicalUrl.toString();
+const currentUrl = canonicalHref;
+const siteOrigin = canonicalUrl.origin;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteOrigin}${ogImage}`;
 
 // Google Search Console verification token. Set PUBLIC_GSC_VERIFICATION in Vercel
@@ -79,7 +89,7 @@ const jsonLd = {
     {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
 
     <!-- Canonical -->
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalHref} />
 
     <!-- Above-the-fold image (LCP) — start the request before CSS/JS parse -->
     {preloadImage && (
@@ -98,7 +108,7 @@ const jsonLd = {
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={`${title} | ${siteName}`} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonicalHref} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
